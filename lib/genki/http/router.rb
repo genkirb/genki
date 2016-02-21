@@ -14,7 +14,6 @@ module Genki
     end
 
     def route(route, &block)
-      # TODO: check it
       @routes[route.signature] = block
     end
 
