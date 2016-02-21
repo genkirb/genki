@@ -6,8 +6,9 @@ module Genki
   #++
   class Server
     def call(env)
-      Router.instance.process(Route.new(env['REQUEST_METHOD'], env['PATH_INFO']))
-      [200, { 'Content-Type' => 'text/html' }, ['Hello World!']]
+      response = Router.instance.process(Route.new(env['REQUEST_METHOD'], env['PATH_INFO']))
+
+      [response.status, response.header, [response.body]]
     end
   end
 end

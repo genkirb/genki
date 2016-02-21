@@ -14,7 +14,6 @@ module Genki
     end
     
     def process(route)
-      byebug
       @routes[route.signature].call
     end
 
