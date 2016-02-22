@@ -17,8 +17,9 @@ module Genki
       @routes[route.signature] = block
     end
 
-    def process(route)
-      @routes[route.signature].call
+    def process(request)
+      Thread.current[:request] = request
+      @routes[request.route.signature].call
     end
   end
 end

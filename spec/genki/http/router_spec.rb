@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Genki::Router do
   let(:router) { Genki::Router.instance }
-  let(:route) { Genki::Route.new(:GET, '/') }
+  let(:route) { Genki::Route.new('GET', '/') }
 
   it 'does has @routes' do
     expect(router.instance_variable_get('@routes')).to eql({})
@@ -20,6 +20,7 @@ describe Genki::Router do
   end
 
   describe '#process' do
+    let(:request) { Genki::Request.new('REQUEST_METHOD' => 'GET', 'PATH_INFO' => '/') }
     let(:routes) { router.instance_variable_get('@routes') }
 
     it 'does call block with correctly signature' do
@@ -28,7 +29,16 @@ describe Genki::Router do
 
       expect(routes['GET/']).to receive(:call)
 
-      router.process(route)
+      router.process(request)
+    end
+
+    it 'does put request on Thread' do
+      router.route route do
+      end
+
+      router.process(request)
+
+      expect(Thread.current[:request]).to eql(request)
     end
   end
 end

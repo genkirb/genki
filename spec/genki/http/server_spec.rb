@@ -20,9 +20,9 @@ describe Genki::Server do
     expect(rack_response[2].body).to eql(['Hello World'])
   end
 
-  it 'does create Route with env info' do
+  it 'does create Request with env info' do
     allow(Genki::Router.instance).to receive(:process).and_return(response)
-    expect(Genki::Route).to receive(:new).with(env['REQUEST_METHOD'], env['PATH_INFO'])
+    expect(Genki::Request).to receive(:new).with(env)
 
     server.call(env)
   end
