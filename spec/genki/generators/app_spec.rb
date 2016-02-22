@@ -35,9 +35,9 @@ describe Genki::Generators::App do
 
   describe '.create_config_ru' do
     before :each do
+      FakeFS::FileSystem.clone('lib/genki/generators/app/files')
       app_generator.set_directory
       app_generator.create_directory
-      FakeFS::FileSystem.clone('lib/genki/generators/app/files')
     end
 
     it 'creates config.ru file' do
@@ -53,6 +53,43 @@ describe Genki::Generators::App do
         expect(content[1]).to eq 'app = Genki::Server.new'
         expect(content[2]).to eq 'run app'
       end
+    end
+  end
+
+  describe '.create_gemfile' do
+    before :each do
+      FakeFS::FileSystem.clone('lib/genki/generators/app/files')
+      app_generator.set_directory
+      app_generator.create_directory
+    end
+
+    it 'creates Gemfile' do
+      app_generator.create_gemfile
+      expect(File.exist?("#{APP_NAME}/Gemfile")).to be_truthy
+    end
+    it 'has the right content' do
+      app_generator.create_gemfile
+
+      File.open "#{APP_NAME}/Gemfile" do |file|
+        content = file.read.split("\n")
+        expect(content[0]).to eq 'source \'https://rubygems.org\''
+        expect(content[1]).to eq ''
+        expect(content[2]).to eq "gem 'genki', '#{Genki::VERSION}'"
+      end
+    end
+  end
+
+  describe '.run_bundle' do
+    before :each do
+      FakeFS::FileSystem.clone('lib/genki/generators/app/files')
+      app_generator.set_directory
+      app_generator.create_directory
+      app_generator.create_gemfile
+    end
+
+    it 'runs bundle' do
+      expect(app_generator).to receive(:run).with('bundle')
+      app_generator.run_bundle
     end
   end
 end

@@ -22,6 +22,16 @@ module Genki
       def create_config_ru
         copy_file 'config.ru'
       end
+
+      def create_gemfile
+        template 'Gemfile'
+      end
+
+      def run_bundle
+        inside do
+          Bundler.with_clean_env { run 'bundle' }
+        end
+      end
     end
   end
 end
