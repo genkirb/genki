@@ -1,3 +1,6 @@
+require 'genki/version'
+require 'bundler'
+
 module Genki
   module Generators
     #--

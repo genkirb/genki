@@ -1,5 +1,5 @@
 require 'thor'
-require_relative 'generators/app'
+require 'genki/generators/app'
 
 module Genki
   #--
