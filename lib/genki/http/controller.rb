@@ -24,5 +24,13 @@ module Genki
     def self.render(body, status = 200, header = [])
       Response.new(body, status, header)
     end
+
+    def self.request
+      Thread.current[:request]
+    end
+
+    def self.params
+      request.params
+    end
   end
 end

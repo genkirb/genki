@@ -95,4 +95,21 @@ describe Genki::Controller do
       end
     end
   end
+
+  describe '.request' do
+    it 'does call thread current' do
+      expect_any_instance_of(Thread).to receive(:[]).with(:request)
+
+      Genki::Controller.request
+    end
+  end
+
+  describe '.params' do
+    it 'does return params' do
+      allow_any_instance_of(Thread).to receive(:[]).and_return(Rack::Request)
+      allow(Rack::Request).to receive(:params).and_return(id: 1)
+
+      expect(Genki::Controller.params).to eql(id: 1)
+    end
+  end
 end

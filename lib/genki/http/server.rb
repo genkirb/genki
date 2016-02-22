@@ -6,8 +6,7 @@ module Genki
   #++
   class Server
     def call(env)
-      response = Router.instance.process(Route.new(env['REQUEST_METHOD'],
-                                                   env['PATH_INFO']))
+      response = Router.instance.process(Request.new(env))
 
       response.finish
     end
