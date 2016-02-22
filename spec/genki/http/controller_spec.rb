@@ -74,7 +74,7 @@ describe Genki::Controller do
 
     describe 'response return' do
       it 'does has correctly body ' do
-        expect(Genki::Controller.render('Hello').body).to eql('Hello')
+        expect(Genki::Controller.render('Hello').body).to eql(['Hello'])
       end
 
       it 'does has default status ' do
@@ -82,7 +82,7 @@ describe Genki::Controller do
       end
 
       it 'does has default header ' do
-        expect(Genki::Controller.render('Hello').header).to eql([])
+        expect(Genki::Controller.render('Hello').header).to eql('Content-Length' => '5')
       end
 
       it 'does has correctly status ' do
@@ -90,7 +90,8 @@ describe Genki::Controller do
       end
 
       it 'does has correctly header ' do
-        expect(Genki::Controller.render('Hello', 200, ['Header']).header).to eql(['Header'])
+        expect(Genki::Controller.render('Hello', 200, 'Header' => 'Value').header)
+          .to eql('Header' => 'Value', 'Content-Length' => '5')
       end
     end
   end

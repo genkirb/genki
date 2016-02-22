@@ -4,13 +4,6 @@ module Genki
   #
   # RESPONSE CLASS
   #++
-  class Response
-    attr_accessor :body, :status, :header
-
-    def initialize(body, status, header)
-      @body = body
-      @status = status
-      @header = header
-    end
+  class Response < Rack::Response
   end
 end

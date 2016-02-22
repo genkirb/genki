@@ -1,10 +1,10 @@
 require 'spec_helper'
 
 describe Genki::Response do
-  let(:response) { Genki::Response.new('body', 200, ['Header']) }
+  let(:response) { Genki::Response.new('body', 200, 'Header' => 'Value') }
 
   it 'does has body' do
-    expect(response.body).to eql('body')
+    expect(response.body).to eql(['body'])
   end
 
   it 'does has status' do
@@ -12,6 +12,6 @@ describe Genki::Response do
   end
 
   it 'does has header' do
-    expect(response.header).to eql(['Header'])
+    expect(response.header).to eql('Header' => 'Value', 'Content-Length' => '4')
   end
 end
