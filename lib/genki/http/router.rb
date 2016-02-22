@@ -19,7 +19,10 @@ module Genki
 
     def process(request)
       Thread.current[:request] = request
-      @routes[request.route.signature].call
+
+      action = @routes[request.route.signature]
+      return Response.new 'Not Found', 404 unless action
+      action.call
     end
   end
 end
