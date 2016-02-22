@@ -21,6 +21,7 @@ describe Genki::Router do
 
   describe '#process' do
     let(:request) { Genki::Request.new('REQUEST_METHOD' => 'GET', 'PATH_INFO' => '/') }
+    let(:invalid_request) { Genki::Request.new('REQUEST_METHOD' => 'GET', 'PATH_INFO' => '/hello') }
     let(:routes) { router.instance_variable_get('@routes') }
 
     it 'does call block with correctly signature' do
@@ -39,6 +40,15 @@ describe Genki::Router do
       router.process(request)
 
       expect(Thread.current[:request]).to eql(request)
+    end
+
+    it 'does not try to call block when route not found' do
+      expect { router.process(invalid_request) }.to_not raise_error
+    end
+
+    it 'does return 404 when route not found' do
+      response = router.process(invalid_request)
+      expect(response.status).to eq 404
     end
   end
 end
