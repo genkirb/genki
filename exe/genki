@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+
+require 'genki/cli'
+Genki::Cli.start
