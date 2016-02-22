@@ -1,32 +1,51 @@
 # Genki
 
+[![Gem Version](https://badge.fury.io/rb/genki.svg)](https://badge.fury.io/rb/genki)
+
 [![Build Status](https://travis-ci.org/genkirb/genki.svg?branch=master)](https://travis-ci.org/genkirb/genki)
 [![Code Climate](https://codeclimate.com/github/genkirb/genki/badges/gpa.svg)](https://codeclimate.com/github/genkirb/genki)
 [![Test Coverage](https://codeclimate.com/github/genkirb/genki/badges/coverage.svg)](https://codeclimate.com/github/genkirb/genki/coverage)
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/genki`. To experiment with that code, run `bin/console` for an interactive prompt.
+A fast and minimalist framework to generate APIs in Ruby.
 
-TODO: Delete this and the text above, and describe your gem
-
-## Installation
-
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'genki'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install genki
+Genki is a full-stack framework optimized for quick and easy creation of beautiful APIs.
 
 ## Usage
 
-TODO: Write usage instructions here
+1. Install Genki:
+
+        $ gem install genki --pre
+
+  You only need `--pre`  while we are in beta.
+
+2. Create a new Genki application:
+
+        $ genki new app
+
+3. Change directory to `app` and start the server:
+
+        $ cd app
+        $ rackup
+
+  You may run with `-h` or `--help` for information on the available commands.
+
+### Controllers
+
+Genki uses controllers to process requests. It differs from `rails`, as we don't enforce any directory structure, and from `sinatra`, since we have a controller super class that should be inherited from.
+
+To handle your request you can simply create a class that inherits from `Genki::Controller` and it will start processing them. See the example below:
+
+```ruby
+# home.rb
+
+class Home < Genki::Controller
+
+  get '/' do
+    #params will be available at `params`
+    render 'Hello World'
+  end
+end
+```
 
 ## Development
 
@@ -36,7 +55,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/genki. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/genkirb/genki. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 
 ## License
