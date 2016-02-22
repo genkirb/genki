@@ -10,9 +10,12 @@ module Genki
         File.expand_path('../app/files', __FILE__)
       end
 
+      def set_directory
+        self.destination_root = app_name
+      end
+
       def create_directory
         raise Thor::Error, set_color("Directory #{app_name} already exists", :red) if Dir.exist?(app_name) && !options[:force]
-        self.destination_root = app_name
         empty_directory ''
       end
 
