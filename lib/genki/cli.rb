@@ -2,6 +2,11 @@ require 'thor'
 require_relative 'generators/app'
 
 module Genki
+  #--
+  # Genki::Cli
+  #
+  # CLI CLASS
+  #++
   class Cli < Thor
     include Thor::Actions
 

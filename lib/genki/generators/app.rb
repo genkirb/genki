@@ -1,5 +1,10 @@
 module Genki
   module Generators
+    #--
+    # Genki::Generators::App
+    #
+    # APP GENERATOR CLASS
+    #++
     class App < Thor::Group
       include Thor::Actions
 
@@ -15,7 +20,8 @@ module Genki
       end
 
       def create_directory
-        raise Thor::Error, set_color("Directory #{app_name} already exists", :red) if Dir.exist?(app_name) && !options[:force]
+        message = set_color("Directory #{app_name} already exists", :red)
+        raise Thor::Error, message if Dir.exist?(app_name) && !options[:force]
         empty_directory ''
       end
 
