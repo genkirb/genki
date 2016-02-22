@@ -14,7 +14,10 @@ describe Genki::Server do
   it 'does return response' do
     allow(Genki::Router.instance).to receive(:process).and_return(response)
 
-    expect(server.call(env)).to eql([200, [], ['Hello World']])
+    rack_response = server.call(env)
+    expect(rack_response[0]).to eql(200)
+    expect(rack_response[1]).to eql('Content-Length' => '11')
+    expect(rack_response[2].body).to eql(['Hello World'])
   end
 
   it 'does create Route with env info' do

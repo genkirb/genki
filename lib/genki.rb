@@ -1,3 +1,4 @@
+require 'rack'
 require_relative 'genki/http/server'
 require_relative 'genki/http/router'
 require_relative 'genki/http/route'

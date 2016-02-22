@@ -8,7 +8,7 @@ module Genki
     def call(env)
       response = Router.instance.process(Route.new(env['REQUEST_METHOD'], env['PATH_INFO']))
 
-      [response.status, response.header, [response.body]]
+      response.finish
     end
   end
 end
