@@ -9,8 +9,8 @@ Gem::Specification.new do |s|
   s.authors       = ['Diego Silva', 'Leonardo Siqueira']
   s.email         = ['diego.silva@live.com', 'leonardo.prg@gmail.com']
 
-  s.summary       = 'Fast and minimalist framework to generate API\'s in ruby.'
-  s.description   = 'Genki is a full-stack framework optimized to create API\'s, quicly, easy and beatiful.'
+  s.summary       = 'A fast and minimalist framework to generate APIs in Ruby.'
+  s.description   = 'Genki is a full-stack framework optimized for quick and easy creation of beautiful APIs.'
   s.homepage      = 'https://github.com/genkirb/genki'
   s.license       = 'MIT'
 
