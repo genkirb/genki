@@ -1,7 +1,7 @@
 require 'rack'
 require 'genki/version'
 require 'genki/cli'
-require 'genki/http/server'
+require 'genki/http/application'
 require 'genki/http/router'
 require 'genki/http/route'
 require 'genki/http/controller'

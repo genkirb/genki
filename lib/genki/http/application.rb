@@ -1,10 +1,10 @@
 module Genki
   #--
-  # Genki::Server
+  # Genki::Application
   #
-  # SERVER CLASS
+  # APPLICATION CLASS
   #++
-  class Server
+  class Application
     def call(env)
       response = Router.instance.process(Request.new(env))
 
