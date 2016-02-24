@@ -34,4 +34,12 @@ describe Genki::Application do
 
     application.call(env)
   end
+
+  it 'does set current request' do
+    allow(Genki::Router.instance).to receive(:process).and_return(response)
+
+    expect(Genki::Request.current).to be_nil
+    application.call(env)
+    expect(Genki::Request.current).to_not be_nil
+  end
 end

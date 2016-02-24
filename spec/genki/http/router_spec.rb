@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Genki::Router do
   let(:router) { Genki::Router.instance }
-  let(:route) { Genki::Route.new('GET', '/') }
+  let(:route) { Genki::Route.new('/') {} }
 
   it 'does has @routes' do
     expect(router.instance_variable_get('@routes')).to eql({})
@@ -12,49 +12,41 @@ describe Genki::Router do
     let(:routes) { router.instance_variable_get('@routes') }
 
     it 'does associate a block to signature' do
-      router.route route do
-      end
+      router.route 'GET', route
 
-      expect(routes['GET/']).to be_a_instance_of(Proc)
+      expect(routes['GET']).to include(route)
     end
   end
 
   describe '#process' do
-    let(:request) { Genki::Request.new('REQUEST_METHOD' => 'GET', 'PATH_INFO' => '/') }
+    let(:request) { Genki::Request.new('REQUEST_METHOD' => 'POST', 'PATH_INFO' => '/') }
     let(:invalid_request) { Genki::Request.new('REQUEST_METHOD' => 'GET', 'PATH_INFO' => '/hello') }
-    let(:routes) { router.instance_variable_get('@routes') }
-    let(:binding_double) { instance_double(Binding, receiver: Object) }
 
-    it 'does call block with correctly signature' do
-      block = double('block')
-      router.route route do
-        block.run
+    before :each do
+      router.route 'POST', route
+    end
+
+    it 'does call process on the route' do
+      Genki::Request.current = request
+      expect(route).to receive(:process)
+
+      router.process
+    end
+
+    context 'when invalid request' do
+      before :each do
+        Genki::Request.current = invalid_request
       end
 
-      allow(routes['GET/']).to receive(:binding).and_return(binding_double)
-      expect(block).to receive(:run)
-
-      router.process(request)
-    end
-
-    it 'does put request on Thread' do
-      router.route route do
+      it 'does not try to process when route not found' do
+        expect_any_instance_of(Genki::Route).to_not receive(:process)
+        expect { router.process }.to_not raise_error
       end
 
-      allow(routes['GET/']).to receive(:binding).and_return(binding_double)
-
-      router.process(request)
-
-      expect(Thread.current[:request]).to eql(request)
-    end
-
-    it 'does not try to call block when route not found' do
-      expect { router.process(invalid_request) }.to_not raise_error
-    end
-
-    it 'does return 404 when route not found' do
-      response = router.process(invalid_request)
-      expect(response.status).to eq 404
+      it 'does return 404 when route not found' do
+        response = router.process
+        expect(response.status).to eq 404
+      end
     end
   end
 end

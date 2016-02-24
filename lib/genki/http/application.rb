@@ -10,7 +10,9 @@ module Genki
     end
 
     def call(env)
-      response = Router.instance.process(Request.new(env))
+      Request.current = Request.new(env)
+
+      response = Router.instance.process
 
       response.finish
     end

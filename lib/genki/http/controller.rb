@@ -6,19 +6,19 @@ module Genki
   #++
   class Controller
     def self.get(path, &block)
-      Router.instance.route(Route.new(:GET, path), &block)
+      Router.instance.route('GET', Route.new(path, &block))
     end
 
     def self.post(path, &block)
-      Router.instance.route(Route.new(:POST, path), &block)
+      Router.instance.route('POST', Route.new(path, &block))
     end
 
     def self.put(path, &block)
-      Router.instance.route(Route.new(:PUT, path), &block)
+      Router.instance.route('PUT', Route.new(path, &block))
     end
 
     def self.delete(path, &block)
-      Router.instance.route(Route.new(:DELETE, path), &block)
+      Router.instance.route('DELETE', Route.new(path, &block))
     end
 
     def render(body, status = 200, header = [])
@@ -26,11 +26,11 @@ module Genki
     end
 
     def request
-      Thread.current[:request]
+      Request.current
     end
 
     def params
-      request.params
+      Request.current.params
     end
   end
 end
