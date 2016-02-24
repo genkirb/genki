@@ -24,9 +24,11 @@ describe Genki::Generators::App do
       app_generator.create_directory
       expect(Dir.exist?(APP_NAME)).to be_truthy
     end
+
     it 'does not create directory if already exists' do
       expect { 2.times { app_generator.create_directory } }.to raise_error Thor::Error
     end
+
     it 'does ignore directory existence if force' do
       app_generator.options = { force: true }
       expect { 2.times { app_generator.create_directory } }.to_not raise_error Thor::Error
@@ -44,6 +46,7 @@ describe Genki::Generators::App do
       app_generator.create_config_ru
       expect(File.exist?("#{APP_NAME}/config.ru")).to be_truthy
     end
+
     it 'has the right content' do
       app_generator.create_config_ru
 
@@ -67,6 +70,7 @@ describe Genki::Generators::App do
       app_generator.create_gemfile
       expect(File.exist?("#{APP_NAME}/Gemfile")).to be_truthy
     end
+
     it 'has the right content' do
       app_generator.create_gemfile
 
@@ -75,6 +79,39 @@ describe Genki::Generators::App do
         expect(content[0]).to eq 'source \'https://rubygems.org\''
         expect(content[1]).to eq ''
         expect(content[2]).to eq "gem 'genki', '#{Genki::VERSION}'"
+      end
+    end
+  end
+
+  describe '.create_sample' do
+    before :each do
+      FakeFS::FileSystem.clone('lib/genki/generators/app/files')
+      app_generator.set_directory
+      app_generator.create_directory
+    end
+
+    it 'creates app folder' do
+      app_generator.create_sample
+      expect(Dir.exist?("#{APP_NAME}/app")).to be_truthy
+    end
+
+    it 'creates app/home.rb' do
+      app_generator.create_sample
+      expect(File.exist?("#{APP_NAME}/app/home.rb")).to be_truthy
+    end
+
+    it 'has the right content' do
+      app_generator.create_sample
+
+      File.open "#{APP_NAME}/app/home.rb" do |file|
+        content = file.read.split("\n")
+        expect(content[0]).to eq 'class Home < Genki::Controller'
+        expect(content[1]).to eq ''
+        expect(content[2]).to eq "  get '/' do"
+        expect(content[3]).to eq "    render 'Hello World from #{APP_NAME}'"
+        expect(content[4]).to eq '  end'
+        expect(content[5]).to eq 'end'
+        expect(content.length).to be 6
       end
     end
   end

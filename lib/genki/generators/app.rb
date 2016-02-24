@@ -36,6 +36,11 @@ module Genki
         template 'Gemfile'
       end
 
+      def create_sample
+        empty_directory 'app'
+        template 'app/home.rb'
+      end
+
       def run_bundle
         inside do
           Bundler.with_clean_env { run 'bundle' }
