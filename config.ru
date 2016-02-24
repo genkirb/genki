@@ -1,3 +1,3 @@
 require 'genki'
-app = Genki::Server.new
+app = Genki::Application.new
 run app

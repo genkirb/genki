@@ -1,4 +1,4 @@
 require 'genki'
 Dir['./**/*.rb'].each { |file| require file }
-app = Genki::Server.new
+app = Genki::Application.new
 run app
