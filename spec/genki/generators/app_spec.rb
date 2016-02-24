@@ -50,9 +50,8 @@ describe Genki::Generators::App do
       File.open "#{APP_NAME}/config.ru" do |file|
         content = file.read.split("\n")
         expect(content[0]).to eq 'require \'genki\''
-        expect(content[1]).to eq 'Dir[\'./**/*.rb\'].each { |file| require file }'
-        expect(content[2]).to eq 'app = Genki::Application.new'
-        expect(content[3]).to eq 'run app'
+        expect(content[1]).to eq 'app = Genki::Application.new'
+        expect(content[2]).to eq 'run app'
       end
     end
   end
