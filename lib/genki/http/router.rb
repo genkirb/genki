@@ -22,7 +22,9 @@ module Genki
 
       action = @routes[request.route.signature]
       return Response.new 'Not Found', 404 unless action
-      action.call
+      klass = action.binding.receiver
+      controller = klass.new
+      controller.instance_eval(&action)
     end
   end
 end
