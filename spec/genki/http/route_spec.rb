@@ -12,7 +12,7 @@ describe Genki::Route do
     end
 
     it 'does create path' do
-      expect(route.instance_variable_get('@path')).to eql('/home/([a-z0-9])+/?$')
+      expect(route.instance_variable_get('@path')).to eql('^/home/([a-z0-9])+/?$')
     end
 
     it 'does create action' do

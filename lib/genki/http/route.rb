@@ -7,7 +7,7 @@ module Genki
   class Route
     def initialize(path, &block)
       @params   = path.match(/:[a-z]+/).to_a
-      @path     = path.gsub(/:[a-z]+/, '([a-z0-9])+').concat('/?$')
+      @path     = '^'.concat(path.gsub(/:[a-z]+/, '([a-z0-9])+')).concat('/?$')
       @action   = block
     end
 
