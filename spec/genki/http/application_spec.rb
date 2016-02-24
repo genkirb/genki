@@ -5,6 +5,14 @@ describe Genki::Application do
   let(:env) { { 'REQUEST_METHOD' => :GET, 'PATH_INFO' => '/' } }
   let(:response) { Genki::Response.new('Hello World', 200, []) }
 
+  it 'does call require on files inside ./app' do
+    files = ['./app/home.rb', './app/site.rb']
+    expect(Dir).to receive(:[]).and_return(files)
+    expect_any_instance_of(Genki::Application).to receive(:require).with(files[0])
+    expect_any_instance_of(Genki::Application).to receive(:require).with(files[1])
+    application
+  end
+
   it 'does call Router.process' do
     expect(Genki::Router.instance).to receive(:process).and_return(response)
 

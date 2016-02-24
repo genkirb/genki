@@ -25,19 +25,20 @@ Genki is a full-stack framework optimized for quick and easy creation of beautif
 3. Change directory to `app` and start the server:
 
         $ cd app
-        $ rackup
+        $ genki server
 
-  You may run with `-h` or `--help` for information on the available commands.
+You may run `genki help` for more information on the available commands.
 
 ### Controllers
 
-Genki uses controllers to process requests. It differs from `rails`, as we don't enforce any directory structure, and from `sinatra`, since we have a controller super class that should be inherited from.
+Genki uses controllers to process requests. It differs from `rails`, as we don't enforce any directory structure (except having your files inside an `app` folder), and from `sinatra`, since we have a controller super class that should be inherited from.
 
-To handle your request you can simply create a class that inherits from `Genki::Controller` and it will start processing them. See the example below:
+To handle your requests you can simply create a class that inherits from `Genki::Controller` and place it inside `app` folder and it will start processing the matching ones.
+
+As per the following example:
 
 ```ruby
-# home.rb
-
+# app/home.rb
 class Home < Genki::Controller
 
   get '/' do
