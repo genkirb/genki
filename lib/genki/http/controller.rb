@@ -21,15 +21,15 @@ module Genki
       Router.instance.route(Route.new(:DELETE, path), &block)
     end
 
-    def self.render(body, status = 200, header = [])
+    def render(body, status = 200, header = [])
       Response.new(body, status, header)
     end
 
-    def self.request
+    def request
       Thread.current[:request]
     end
 
-    def self.params
+    def params
       request.params
     end
   end

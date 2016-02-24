@@ -23,12 +23,16 @@ describe Genki::Router do
     let(:request) { Genki::Request.new('REQUEST_METHOD' => 'GET', 'PATH_INFO' => '/') }
     let(:invalid_request) { Genki::Request.new('REQUEST_METHOD' => 'GET', 'PATH_INFO' => '/hello') }
     let(:routes) { router.instance_variable_get('@routes') }
+    let(:binding_double) { instance_double(Binding, receiver: Object) }
 
     it 'does call block with correctly signature' do
+      block = double('block')
       router.route route do
+        block.run
       end
 
-      expect(routes['GET/']).to receive(:call)
+      allow(routes['GET/']).to receive(:binding).and_return(binding_double)
+      expect(block).to receive(:run)
 
       router.process(request)
     end
@@ -36,6 +40,8 @@ describe Genki::Router do
     it 'does put request on Thread' do
       router.route route do
       end
+
+      allow(routes['GET/']).to receive(:binding).and_return(binding_double)
 
       router.process(request)
 
