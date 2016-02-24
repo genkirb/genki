@@ -1,10 +1,19 @@
 require 'spec_helper'
 
 describe Genki::Request do
-  let(:env) { { 'REQUEST_METHOD' => :GET, 'PATH_INFO' => '/' } }
-  let(:request) { Genki::Request.new(env) }
+  describe '.current=' do
+    it 'does put request on thread' do
+      Genki::Request.current = 1
 
-  it 'does create route' do
-    expect(request.route.signature).to eql(Genki::Route.new('GET', '/').signature)
+      expect(Genki::Request.current).to eql(1)
+    end
+  end
+
+  describe '.current' do
+    it 'does return thread request' do
+      Genki::Request.current = 10
+
+      expect(Genki::Request.current).to eql(10)
+    end
   end
 end

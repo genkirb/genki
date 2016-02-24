@@ -5,7 +5,7 @@ describe Genki::Controller do
 
   describe '#get' do
     it 'does call Router.route' do
-      expect(Genki::Router.instance).to receive(:route)
+      expect(Genki::Router.instance).to receive(:route).with('GET', any_args)
 
       Genki::Controller.get('/')
     end
@@ -13,7 +13,7 @@ describe Genki::Controller do
     it 'does create a correctly Route' do
       allow(Genki::Router.instance).to receive(:route)
 
-      expect(Genki::Route).to receive(:new).with(:GET, '/')
+      expect(Genki::Route).to receive(:new).with('/', any_args)
 
       Genki::Controller.get('/')
     end
@@ -21,7 +21,7 @@ describe Genki::Controller do
 
   describe '#post' do
     it 'does call Router.route' do
-      expect(Genki::Router.instance).to receive(:route)
+      expect(Genki::Router.instance).to receive(:route).with('POST', any_args)
 
       Genki::Controller.post('/')
     end
@@ -29,7 +29,7 @@ describe Genki::Controller do
     it 'does create a correctly Route' do
       allow(Genki::Router.instance).to receive(:route)
 
-      expect(Genki::Route).to receive(:new).with(:POST, '/')
+      expect(Genki::Route).to receive(:new).with('/', any_args)
 
       Genki::Controller.post('/')
     end
@@ -37,7 +37,7 @@ describe Genki::Controller do
 
   describe '#put' do
     it 'does call Router.route' do
-      expect(Genki::Router.instance).to receive(:route)
+      expect(Genki::Router.instance).to receive(:route).with('PUT', any_args)
 
       Genki::Controller.put('/')
     end
@@ -45,7 +45,7 @@ describe Genki::Controller do
     it 'does create a correctly Route' do
       allow(Genki::Router.instance).to receive(:route)
 
-      expect(Genki::Route).to receive(:new).with(:PUT, '/')
+      expect(Genki::Route).to receive(:new).with('/', any_args)
 
       Genki::Controller.put('/')
     end
@@ -53,7 +53,7 @@ describe Genki::Controller do
 
   describe '#delete' do
     it 'does call Router.route' do
-      expect(Genki::Router.instance).to receive(:route)
+      expect(Genki::Router.instance).to receive(:route).with('DELETE', any_args)
 
       Genki::Controller.delete('/')
     end
@@ -61,7 +61,7 @@ describe Genki::Controller do
     it 'does create a correctly Route' do
       allow(Genki::Router.instance).to receive(:route)
 
-      expect(Genki::Route).to receive(:new).with(:DELETE, '/')
+      expect(Genki::Route).to receive(:new).with('/', any_args)
 
       Genki::Controller.delete('/')
     end
@@ -98,7 +98,7 @@ describe Genki::Controller do
 
   describe '.request' do
     it 'does call thread current' do
-      expect_any_instance_of(Thread).to receive(:[]).with(:request)
+      expect(Genki::Request).to receive(:current)
 
       subject.request
     end
@@ -106,7 +106,7 @@ describe Genki::Controller do
 
   describe '.params' do
     it 'does return params' do
-      allow_any_instance_of(Thread).to receive(:[]).and_return(Rack::Request)
+      allow(Genki::Request).to receive(:current).and_return(Rack::Request)
       allow(Rack::Request).to receive(:params).and_return(id: 1)
 
       expect(subject.params).to eql(id: 1)

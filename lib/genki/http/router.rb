@@ -1,5 +1,4 @@
 require 'singleton'
-
 module Genki
   #--
   # Genki::Route
@@ -13,18 +12,22 @@ module Genki
       @routes = {}
     end
 
-    def route(route, &block)
-      @routes[route.signature] = block
+    def route(method, route)
+      @routes[method] ||= []
+      @routes[method] << route
     end
 
-    def process(request)
-      Thread.current[:request] = request
+    def process
+      current_route = nil
 
-      action = @routes[request.route.signature]
-      return Response.new 'Not Found', 404 unless action
-      klass = action.binding.receiver
-      controller = klass.new
-      controller.instance_eval(&action)
+      @routes[Request.current.request_method].each do |route|
+        current_route = route.match?(Request.current.path) ? route : nil
+        break if current_route
+      end
+
+      return Response.new 'Not Found', 404 unless current_route
+
+      current_route.process
     end
   end
 end
