@@ -2,17 +2,17 @@ require 'spec_helper'
 
 describe Genki::Route do
   let(:route) do
-    Genki::Route.new('/home/:id') do
+    Genki::Route.new('/companies/:company_id/employees/:id') do
     end
   end
 
   describe '#initialize' do
     it 'does create params' do
-      expect(route.instance_variable_get('@params')).to eql([':id'])
+      expect(route.instance_variable_get('@params')).to eql([':company_id', ':id'])
     end
 
     it 'does create path' do
-      expect(route.instance_variable_get('@path')).to eql('^/home/([a-z0-9])+/?$')
+      expect(route.instance_variable_get('@path')).to eql('^/companies/([a-z0-9])+/employees/([a-z0-9])+/?$')
     end
 
     it 'does create action' do
@@ -23,13 +23,13 @@ describe Genki::Route do
   describe '#match?' do
     describe 'when current path match' do
       it 'does return true' do
-        expect(route.match?('/home/1')).to be_truthy
+        expect(route.match?('/companies/1/employees/2')).to be_truthy
       end
 
       it 'does assign params to @parsed_path' do
-        route.match?('/home/1')
+        route.match?('/companies/1/employees/2')
 
-        expect(route.instance_variable_get('@parsed_path')).to eql(['1'])
+        expect(route.instance_variable_get('@parsed_path')).to eql(%w(1 2))
       end
     end
 
@@ -75,10 +75,10 @@ describe Genki::Route do
     end
 
     it 'does merge URL params to request' do
-      route.match?('/home/1')
+      route.match?('/companies/1/employees/2')
       route.send(:process_params)
 
-      expect(Genki::Request.current.params).to eql('name' => 'la', 'id' => '1')
+      expect(Genki::Request.current.params).to eql('name' => 'la', 'company_id' => '1', 'id' => '2')
     end
 
     context 'when receiving JSON data' do
@@ -88,7 +88,7 @@ describe Genki::Route do
         env = { 'CONTENT_TYPE' => 'application/json', 'rack.input' => instance_double(StringIO, read: JSON_DATA) }
         Genki::Request.current = Genki::Request.new(env)
 
-        route.match?('/home/1')
+        route.match?('/companies/1/employees/2')
         route.send(:process_params)
       end
 
@@ -97,7 +97,7 @@ describe Genki::Route do
       end
 
       it 'does merge JSON with URL params' do
-        expect(Genki::Request.current.params).to eql({ 'id' => '1' }.merge(JSON.parse(JSON_DATA)))
+        expect(Genki::Request.current.params).to eql({ 'company_id' => '1', 'id' => '2' }.merge(JSON.parse(JSON_DATA)))
       end
 
       it 'does get correct object types and values' do
