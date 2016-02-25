@@ -41,10 +41,12 @@ describe Genki::Route do
   end
 
   describe '#process' do
+    let(:genki_controller) { Genki::Controller.new }
+
     before(:each) do
       Genki::Request.current = Rack::Request.new({})
       allow_any_instance_of(Rack::Request).to receive(:params).and_return('name' => 'la')
-      allow_any_instance_of(RSpec::ExampleGroups::GenkiRoute::Process).to receive(:new).and_return(Genki::Controller.new)
+      allow_any_instance_of(RSpec::ExampleGroups::GenkiRoute::Process).to receive(:new).and_return(genki_controller)
     end
 
     it 'does merge params to request' do
@@ -64,6 +66,13 @@ describe Genki::Route do
       expect(block).to receive(:run)
 
       route.match?('/home/1')
+      route.process
+    end
+
+    it 'does call the block whitin the controller context' do
+      expect(genki_controller).to receive(:instance_eval)
+
+      route.match?('/companies/1/employees/2')
       route.process
     end
   end

@@ -9,13 +9,13 @@ module Genki
   class Server < Rack::Server
     def initialize(options = {})
       options = default_options.merge(options)
-      super
+      super(options)
     end
 
     def start
       uri = "http://#{options[:Host]}:#{options[:Port]}"
       puts "Genki application starting in #{options[:environment]} on #{uri}"
-      super
+      super()
     end
   end
 end

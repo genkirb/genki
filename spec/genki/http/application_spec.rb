@@ -7,7 +7,7 @@ describe Genki::Application do
 
   it 'does call require on files inside ./app' do
     files = ['./app/home.rb', './app/site.rb']
-    expect(Dir).to receive(:[]).and_return(files)
+    expect(Dir).to receive(:[]).with('./app/**/*.rb').and_return(files)
     expect_any_instance_of(Genki::Application).to receive(:require).with(files[0])
     expect_any_instance_of(Genki::Application).to receive(:require).with(files[1])
     application

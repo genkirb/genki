@@ -10,6 +10,7 @@ describe Genki::Server do
       options = { opt1: :val1, opt2: :val2, Port: 1234 }
       server = Genki::Server.new options
       expect(server.options).to include options
+      expect(server.options).to eq(subject.default_options.merge(options))
     end
   end
 
