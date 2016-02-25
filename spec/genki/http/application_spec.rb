@@ -5,6 +5,10 @@ describe Genki::Application do
   let(:env) { { 'REQUEST_METHOD' => :GET, 'PATH_INFO' => '/' } }
   let(:response) { Genki::Response.new('Hello World', 200, []) }
 
+  before :each do
+    Genki::Request.current = nil
+  end
+
   it 'does call require on files inside ./app' do
     files = ['./app/home.rb', './app/site.rb']
     expect(Dir).to receive(:[]).with('./app/**/*.rb').and_return(files)

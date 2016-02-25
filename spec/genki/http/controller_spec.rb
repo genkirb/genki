@@ -68,6 +68,10 @@ describe Genki::Controller do
   end
 
   describe '.render' do
+    before :each do
+      allow(Genki::Request).to receive(:current).and_return(instance_double(Genki::Request, cookies: {}))
+    end
+
     it 'does return a Response' do
       expect(subject.render('Hello')).to be_a_instance_of(Genki::Response)
     end
