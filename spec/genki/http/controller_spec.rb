@@ -93,6 +93,24 @@ describe Genki::Controller do
         expect(subject.render('Hello', 200, 'Header' => 'Value').header)
           .to eql('Header' => 'Value', 'Content-Length' => '5')
       end
+
+      it 'does add cookies to the response' do
+        subject.cookies['key2'] = 'value2'
+        expect(subject.render('Hello').set_cookie_header).to eq 'key2=value2'
+      end
+
+      it 'does not add unchanged from request cookies to the response' do
+        Genki::Request.current = Genki::Request.new 'HTTP_COOKIE' => 'key=value'
+        subject.cookies['key2'] = 'value2'
+        expect(subject.render('Hello').set_cookie_header).to eq 'key2=value2'
+      end
+
+      it 'does add changed cookies from request to response' do
+        Genki::Request.current = Genki::Request.new 'HTTP_COOKIE' => 'key=value'
+        subject.cookies['key'] = 'new_value'
+        subject.cookies['key2'] = 'value2'
+        expect(subject.render('Hello').set_cookie_header).to eq "key=new_value\nkey2=value2"
+      end
     end
   end
 
@@ -110,6 +128,28 @@ describe Genki::Controller do
       allow(Rack::Request).to receive(:params).and_return(id: 1)
 
       expect(subject.params).to eql(id: 1)
+    end
+  end
+
+  describe '.cookies' do
+    before :each do
+      Genki::Request.current = Genki::Request.new 'HTTP_COOKIE' => 'key=value'
+    end
+
+    it 'does set instance variable' do
+      expect(subject.instance_variable_get('@_cookies')).to be_nil
+      subject.cookies
+      expect(subject.instance_variable_get('@_cookies')).to eq Genki::Request.current.cookies
+    end
+
+    it 'does retrive request cookies' do
+      expect(subject.cookies).to eq('key' => 'value')
+    end
+
+    it 'does store a new cookie' do
+      subject.cookies['key2'] = 'value2'
+      expect(subject.cookies).to include('key' => 'value')
+      expect(subject.cookies).to include('key2' => 'value2')
     end
   end
 end
