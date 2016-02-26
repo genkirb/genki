@@ -1,5 +1,3 @@
-require 'oj'
-
 module Genki
   #--
   # Genki::Route
@@ -36,7 +34,7 @@ module Genki
 
       if Request.current.json_data?
         raw_data = Request.current.env['rack.input'].read
-        params.merge!(Oj.load(raw_data))
+        params.merge!(JSON.parse(raw_data))
       end
 
       Request.current.params.merge!(params)

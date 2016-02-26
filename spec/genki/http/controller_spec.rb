@@ -78,7 +78,7 @@ describe Genki::Controller do
 
     describe 'response return' do
       it 'does has correctly body ' do
-        expect(subject.render('Hello').body).to eql(['Hello'])
+        expect(subject.render('Hello').body).to eql(['"Hello"'])
       end
 
       it 'does has default status ' do
@@ -86,7 +86,7 @@ describe Genki::Controller do
       end
 
       it 'does has default header ' do
-        expect(subject.render('Hello').header).to eql('Content-Length' => '5')
+        expect(subject.render('Hello').header).to eql('content-type' => 'application/json', 'Content-Length' => '7')
       end
 
       it 'does has correctly status ' do
@@ -95,7 +95,7 @@ describe Genki::Controller do
 
       it 'does has correctly header ' do
         expect(subject.render('Hello', 200, 'Header' => 'Value').header)
-          .to eql('Header' => 'Value', 'Content-Length' => '5')
+          .to eql('Header' => 'Value', 'content-type' => 'application/json', 'Content-Length' => '7')
       end
 
       it 'does add cookies to the response' do
