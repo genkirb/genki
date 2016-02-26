@@ -20,9 +20,11 @@ module Genki
     def process
       current_route = nil
 
-      @routes[Request.current.request_method].each do |route|
-        current_route = route.match?(Request.current.path) ? route : nil
-        break if current_route
+      if @routes[Request.current.request_method]
+        @routes[Request.current.request_method].each do |route|
+          current_route = route.match?(Request.current.path) ? route : nil
+          break if current_route
+        end
       end
 
       return Response.new 'Not Found', 404 unless current_route
