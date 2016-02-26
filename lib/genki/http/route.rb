@@ -1,3 +1,5 @@
+require 'oj'
+
 module Genki
   #--
   # Genki::Route
@@ -16,17 +18,28 @@ module Genki
     end
 
     def process
+      process_params
+
+      klass = @action.binding.receiver
+      controller = klass.new
+      controller.instance_eval(&@action)
+    end
+
+    private
+
+    def process_params
       params = {}
 
       @params.each_with_index do |param, index|
         params[param[1..-1]] = @parsed_path[index]
       end
 
-      Request.current.params.merge!(params)
+      if Request.current.json_data?
+        raw_data = Request.current.env['rack.input'].read
+        params.merge!(Oj.load(raw_data))
+      end
 
-      klass = @action.binding.receiver
-      controller = klass.new
-      controller.instance_eval(&@action)
+      Request.current.params.merge!(params)
     end
   end
 end

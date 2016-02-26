@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'rack', '~> 2.x'
   s.add_dependency 'thor', '~> 0.19.1'
   s.add_dependency 'bundler', '~> 1.11'
+  s.add_dependency 'oj', '~> 2.14.0'
 
   s.add_development_dependency 'rake', '~> 10.0'
   s.add_development_dependency 'rspec', '~> 3.0'
