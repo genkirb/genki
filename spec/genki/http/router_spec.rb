@@ -20,7 +20,7 @@ describe Genki::Router do
 
   describe '#process' do
     let(:request) { Genki::Request.new('REQUEST_METHOD' => 'POST', 'PATH_INFO' => '/') }
-    let(:invalid_request) { Genki::Request.new('REQUEST_METHOD' => 'GET', 'PATH_INFO' => '/hello') }
+    let(:invalid_request) { Genki::Request.new('REQUEST_METHOD' => 'PUT', 'PATH_INFO' => '/hello') }
 
     before :each do
       router.route 'POST', route
