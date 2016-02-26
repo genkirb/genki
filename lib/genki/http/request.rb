@@ -12,5 +12,9 @@ module Genki
     def self.current
       Thread.current[:request]
     end
+
+    def json_data?
+      media_type == 'application/json'
+    end
   end
 end

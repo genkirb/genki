@@ -16,4 +16,16 @@ describe Genki::Request do
       expect(Genki::Request.current).to eql(10)
     end
   end
+
+  describe '.json_data?' do
+    let(:request) { Genki::Request.new({}) }
+
+    it 'does return a boolean' do
+      expect(request.json_data?).to be false
+    end
+
+    it 'does return true when content-type == json' do
+      request.env['CONTENT_TYPE'] = 'application/json; charset=UTF-8'
+    end
+  end
 end

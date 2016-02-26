@@ -42,16 +42,16 @@ describe Genki::Route do
 
   describe '#process' do
     before(:each) do
-      Genki::Request.current = Rack::Request.new({})
-      allow_any_instance_of(Rack::Request).to receive(:params).and_return('name' => 'la')
-      allow_any_instance_of(RSpec::ExampleGroups::GenkiRoute::Process).to receive(:new).and_return(Genki::Controller.new)
+      Genki::Request.current = Genki::Request.new({})
+      allow(Genki::Request.current).to receive(:params).and_return('name' => 'la')
+      allow(self).to receive(:new).and_return(Genki::Controller.new)
     end
 
-    it 'does merge params to request' do
+    it 'does call process_params' do
+      expect(route).to receive(:process_params)
+
       route.match?('/home/1')
       route.process
-
-      expect(Genki::Request.current.params).to eql('name' => 'la', 'id' => '1')
     end
 
     it 'does call the route block' do
@@ -65,6 +65,48 @@ describe Genki::Route do
 
       route.match?('/home/1')
       route.process
+    end
+  end
+
+  describe '#process_params' do
+    before(:each) do
+      Genki::Request.current = Genki::Request.new({})
+      allow(Genki::Request.current).to receive(:params).and_return('name' => 'la')
+    end
+
+    it 'does merge URL params to request' do
+      route.match?('/home/1')
+      route.send(:process_params)
+
+      expect(Genki::Request.current.params).to eql('name' => 'la', 'id' => '1')
+    end
+
+    context 'when receiving JSON data' do
+      JSON_DATA = '{"json":{"id":1, "bool":true, "string":"lala", "sub_obj":{"id":5}}}'.freeze
+
+      before :each do
+        env = { 'CONTENT_TYPE' => 'application/json', 'rack.input' => instance_double(StringIO, read: JSON_DATA) }
+        Genki::Request.current = Genki::Request.new(env)
+
+        route.match?('/home/1')
+        route.send(:process_params)
+      end
+
+      it 'does parse JSON parameters' do
+        expect(Genki::Request.current.params).to include JSON.parse(JSON_DATA)
+      end
+
+      it 'does merge JSON with URL params' do
+        expect(Genki::Request.current.params).to eql({ 'id' => '1' }.merge(JSON.parse(JSON_DATA)))
+      end
+
+      it 'does get correct object types and values' do
+        expect(Genki::Request.current.params['json']['id']).to be 1
+        expect(Genki::Request.current.params['json']['bool']).to be true
+        expect(Genki::Request.current.params['json']['string']).to eql 'lala'.freeze
+        expect(Genki::Request.current.params['json']['sub_obj']).to eql 'id' => 5
+        expect(Genki::Request.current.params['json']['sub_obj']['id']).to be 5
+      end
     end
   end
 end
