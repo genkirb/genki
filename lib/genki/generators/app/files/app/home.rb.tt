@@ -1,6 +1,6 @@
 class Home < Genki::Controller
 
   get '/' do
-    render 'Hello World from <%= app_name %>'
+    render({ message: 'Hello World from <%= app_name %>' })
   end
 end

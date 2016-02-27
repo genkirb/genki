@@ -1,3 +1,5 @@
+require 'json'
+
 module Genki
   #--
   # Genki::Controller
@@ -21,8 +23,10 @@ module Genki
       Router.instance.route('DELETE', Route.new(path, &block))
     end
 
-    def render(body, status = 200, header = [])
-      response = Response.new(body, status, header)
+    def render(body, status = 200, header = {})
+      header['content-type'] ||= 'application/json'
+
+      response = Response.new(JSON.dump(body), status, header)
       cookies.each do |key, value|
         response.set_cookie(key, value) if cookie_changed?(key, value)
       end

@@ -108,7 +108,7 @@ describe Genki::Generators::App do
         expect(content[0]).to eq 'class Home < Genki::Controller'
         expect(content[1]).to eq ''
         expect(content[2]).to eq "  get '/' do"
-        expect(content[3]).to eq "    render 'Hello World from #{APP_NAME}'"
+        expect(content[3]).to eq "    render({ message: 'Hello World from #{APP_NAME}' })"
         expect(content[4]).to eq '  end'
         expect(content[5]).to eq 'end'
         expect(content.length).to be 6
