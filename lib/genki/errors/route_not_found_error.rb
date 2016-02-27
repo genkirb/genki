@@ -4,6 +4,6 @@ module Genki
   #
   # RouteNotFound error class
   #++
-  class RouteNotFoundError < Exception
+  class RouteNotFoundError < StandardError
   end
 end

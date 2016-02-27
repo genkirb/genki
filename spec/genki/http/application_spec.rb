@@ -61,5 +61,4 @@ describe Genki::Application do
     response = application.call(env)
     expect(response.status).to eql(500)
   end
-
 end
