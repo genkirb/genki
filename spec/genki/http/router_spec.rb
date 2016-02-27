@@ -16,17 +16,20 @@ describe Genki::Router do
 
       expect(routes['GET']).to include(route)
     end
+
+    it 'raises error when associating same route twice' do
+      router.route 'GET', Genki::Route.new('/twice')
+      expect { router.route 'GET', Genki::Route.new('/twice') }
+        .to raise_error(Genki::RouteAlreadyDefinedError, "Trying to redefine already defined route 'GET /twice'.")
+    end
   end
 
   describe '#process' do
     let(:request) { Genki::Request.new('REQUEST_METHOD' => 'POST', 'PATH_INFO' => '/') }
     let(:invalid_request) { Genki::Request.new('REQUEST_METHOD' => 'PUT', 'PATH_INFO' => '/hello') }
 
-    before :each do
-      router.route 'POST', route
-    end
-
     it 'does call process on the route' do
+      router.route 'POST', route
       Genki::Request.current = request
       expect(route).to receive(:process)
 

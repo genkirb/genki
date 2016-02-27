@@ -1,4 +1,5 @@
 require 'singleton'
+
 module Genki
   #--
   # Genki::Route
@@ -14,6 +15,7 @@ module Genki
 
     def route(method, route)
       @routes[method] ||= []
+      raise RouteAlreadyDefinedError, "#{method} #{route.path}" if @routes[method].include? route
       @routes[method] << route
     end
 
