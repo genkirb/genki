@@ -12,7 +12,7 @@ describe Genki::Route do
     end
 
     it 'does create path' do
-      expect(route.instance_variable_get('@path')).to eql('^/companies/([a-z0-9])+/employees/([a-z0-9])+/?$')
+      expect(route.instance_variable_get('@path')).to eql('^/companies/([a-z0-9]+)/employees/([a-z0-9]+)/?$')
     end
 
     it 'does create action' do
@@ -27,9 +27,9 @@ describe Genki::Route do
       end
 
       it 'does assign params to @parsed_path' do
-        route.match?('/companies/1/employees/2')
+        route.match?('/companies/123/employees/2')
 
-        expect(route.instance_variable_get('@parsed_path')).to eql(%w(1 2))
+        expect(route.instance_variable_get('@parsed_path')).to eql(%w(123 2))
       end
     end
 
