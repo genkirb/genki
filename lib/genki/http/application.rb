@@ -13,7 +13,11 @@ module Genki
       Request.current = Request.new(env)
 
       response = Router.instance.process
-
+    rescue RouteNotFoundError
+      response = Response.new('', 404)
+    rescue
+      response = Response.new('', 500)
+    ensure
       response.finish
     end
   end

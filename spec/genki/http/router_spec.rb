@@ -38,14 +38,10 @@ describe Genki::Router do
         Genki::Request.current = invalid_request
       end
 
-      it 'does not try to process when route not found' do
-        expect_any_instance_of(Genki::Route).to_not receive(:process)
-        expect { router.process }.to_not raise_error
-      end
-
-      it 'does return 404 when route not found' do
-        response = router.process
-        expect(response.status).to eq 404
+      it 'does raise RouteNotFoundError when route not found' do
+        expect do
+          router.process
+        end.to raise_error(Genki::RouteNotFoundError)
       end
     end
   end

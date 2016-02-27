@@ -27,7 +27,7 @@ module Genki
         end
       end
 
-      return Response.new 'Not Found', 404 unless current_route
+      raise RouteNotFoundError unless current_route
 
       current_route.process
     end
