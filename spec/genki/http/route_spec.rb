@@ -66,6 +66,16 @@ describe Genki::Route do
       route.match?('/home/1')
       route.process
     end
+
+    it 'does logger request' do
+      route = Genki::Route.new('/home/:id') do
+      end
+
+      expect(Genki::Logger.instance).to receive(:info).with(any_args)
+
+      route.match?('/home/1')
+      route.process
+    end
   end
 
   describe '#process_params' do

@@ -1,7 +1,7 @@
 # Configuration parameters: AllowHeredoc, AllowURI, URISchemes.
 # URISchemes: http, https
 Metrics/LineLength:
-  Max: 90
+  Max: 120
   Exclude:
     - 'spec/**/*'
     - './genki.gemspec'

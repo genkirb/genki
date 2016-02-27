@@ -15,7 +15,8 @@ module Genki
       response = Router.instance.process
     rescue RouteNotFoundError
       response = Response.new('', 404)
-    rescue
+    rescue StandardError => e
+      Logger.error(e)
       response = Response.new('', 500)
     ensure
       response.finish

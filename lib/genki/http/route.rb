@@ -22,6 +22,9 @@ module Genki
 
       klass = @action.binding.receiver
       controller = klass.new
+
+      Logger.info("Request processed by #{klass}")
+
       controller.instance_eval(&@action)
     end
 
