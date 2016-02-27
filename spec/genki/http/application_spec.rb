@@ -62,9 +62,4 @@ describe Genki::Application do
     expect(response.status).to eql(500)
   end
 
-  it'does set logger at env' do
-    application.call(env)
-
-    expect(env[Rack::RACK_LOGGER]).to be_a_instance_of(Rack::CommonLogger)
-  end
 end

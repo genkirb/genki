@@ -10,8 +10,6 @@ module Genki
     end
 
     def call(env)
-      env[Rack::RACK_LOGGER] = Rack::CommonLogger.new(self, Logger.instance)
-
       Request.current = Request.new(env)
 
       response = Router.instance.process
