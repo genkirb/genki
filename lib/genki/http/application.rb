@@ -10,12 +10,15 @@ module Genki
     end
 
     def call(env)
+      env[Rack::RACK_LOGGER] = Rack::CommonLogger.new(self, Logger.instance)
+
       Request.current = Request.new(env)
 
       response = Router.instance.process
     rescue RouteNotFoundError
       response = Response.new('', 404)
-    rescue
+    rescue StandardError => e
+      Logger.error(e)
       response = Response.new('', 500)
     ensure
       response.finish
