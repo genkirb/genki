@@ -5,7 +5,7 @@ describe Genki::Router do
   let(:route) { Genki::Route.new('/') {} }
 
   it 'does has @routes' do
-    expect(router.instance_variable_get('@routes')).to eql({})
+    expect(router.instance_variable_get('@routes')).to_not be_nil
   end
 
   describe '#route' do

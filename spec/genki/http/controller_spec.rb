@@ -118,6 +118,28 @@ describe Genki::Controller do
     end
   end
 
+  describe 'namespace' do
+    it 'does set namespace' do
+      expect(Genki::Route).to receive(:new).with('/products/new', any_args).and_return(Genki::Route.new('/products'))
+
+      controller.namespace '/products' do
+        get '/new' do
+        end
+      end
+    end
+
+    it 'does accept nested namespace' do
+      expect(Genki::Route).to receive(:new).with('/products/:id/edit', any_args).and_return(Genki::Route.new('/products/:id/edit'))
+
+      controller.namespace '/products' do
+        namespace '/:id' do
+          get '/edit' do
+          end
+        end
+      end
+    end
+  end
+
   describe '.request' do
     it 'does call thread current' do
       expect(Genki::Request).to receive(:current)
