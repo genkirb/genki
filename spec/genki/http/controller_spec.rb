@@ -67,6 +67,38 @@ describe Genki::Controller do
     end
   end
 
+  describe '#options' do
+    it 'does call Router.route' do
+      expect(Genki::Router.instance).to receive(:route).with('OPTIONS', any_args)
+
+      Genki::Controller.options('/')
+    end
+
+    it 'does create a correctly Route' do
+      allow(Genki::Router.instance).to receive(:route)
+
+      expect(Genki::Route).to receive(:new).with('/', any_args)
+
+      Genki::Controller.options('/')
+    end
+  end
+
+  describe '#patch' do
+    it 'does call Router.route' do
+      expect(Genki::Router.instance).to receive(:route).with('PATCH', any_args)
+
+      Genki::Controller.patch('/')
+    end
+
+    it 'does create a correctly Route' do
+      allow(Genki::Router.instance).to receive(:route)
+
+      expect(Genki::Route).to receive(:new).with('/', any_args)
+
+      Genki::Controller.patch('/')
+    end
+  end
+
   describe '.render' do
     before :each do
       allow(Genki::Request).to receive(:current).and_return(instance_double(Genki::Request, cookies: {}))
