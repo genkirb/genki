@@ -32,7 +32,15 @@ module Genki
       Router.instance.route('DELETE', Route.new((@namespace || []).push(path).join, &block))
     end
 
-    def render(body, status = 200, header = {})
+    def self.options(path, &block)
+      Router.instance.route('OPTIONS', Route.new((@namespace || []).push(path).join, &block))
+    end
+
+    def self.patch(path, &block)
+      Router.instance.route('PATCH', Route.new((@namespace || []).push(path).join, &block))
+    end
+
+    def render(body = {}, status = 200, header = {})
       header['content-type'] ||= 'application/json'
 
       response = Response.new(JSON.dump(body), status, header)
