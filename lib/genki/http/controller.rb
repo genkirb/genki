@@ -40,10 +40,11 @@ module Genki
       Router.instance.route('PATCH', Route.new((@namespace || []).push(path).join, &block))
     end
 
-    def render(body = {}, status = 200, header = {})
-      header['content-type'] ||= 'application/json'
 
-      response = Response.new(JSON.dump(body), status, header)
+    def render(json: nil, headers: {}, status: 200)
+      body = json ? render_json(json, headers) : ''
+
+      response = Response.new(body, status, headers)
       cookies.each do |key, value|
         response.set_cookie(key, value) if cookie_changed?(key, value)
       end
@@ -63,6 +64,11 @@ module Genki
     end
 
     private
+
+    def render_json(json, headers)
+      headers['content-type'] ||= 'application/json'
+      JSON.dump(json)
+    end
 
     def cookie_changed?(key, value)
       request.cookies[key] != value

@@ -105,47 +105,47 @@ describe Genki::Controller do
     end
 
     it 'does return a Response' do
-      expect(subject.render(message: 'Hello')).to be_a_instance_of(Genki::Response)
+      expect(subject.render(json: { message: 'Hello' })).to be_a_instance_of(Genki::Response)
     end
 
     describe 'response return' do
       it 'does has correctly body ' do
-        expect(subject.render(message: 'Hello').body).to eql(['{"message":"Hello"}'])
+        expect(subject.render(json: { message: 'Hello' }).body).to eql(['{"message":"Hello"}'])
       end
 
       it 'does has default status ' do
-        expect(subject.render(message: 'Hello').status).to eql(200)
+        expect(subject.render(json: { message: 'Hello' }).status).to eql(200)
       end
 
       it 'does has default header ' do
-        expect(subject.render(message: 'Hello').header).to eql('content-type' => 'application/json', 'Content-Length' => '19')
+        expect(subject.render(json: { message: 'Hello' }).header).to eql('content-type' => 'application/json', 'Content-Length' => '19')
       end
 
       it 'does has correctly status ' do
-        expect(subject.render({ message: 'Hello' }, 403).status).to eql(403)
+        expect(subject.render(json: { message: 'Hello' }, status: 403).status).to eql(403)
       end
 
       it 'does has correctly header ' do
-        expect(subject.render({ message: 'Hello' }, 200, 'Header' => 'Value').header)
+        expect(subject.render(json: { message: 'Hello' }, status: 200, headers: { 'Header' => 'Value' }).header)
           .to eql('Header' => 'Value', 'content-type' => 'application/json', 'Content-Length' => '19')
       end
 
       it 'does add cookies to the response' do
         subject.cookies['key2'] = 'value2'
-        expect(subject.render(message: 'Hello').set_cookie_header).to eq 'key2=value2'
+        expect(subject.render(json: { message: 'Hello' }).set_cookie_header).to eq 'key2=value2'
       end
 
       it 'does not add unchanged from request cookies to the response' do
         Genki::Request.current = Genki::Request.new 'HTTP_COOKIE' => 'key=value'
         subject.cookies['key2'] = 'value2'
-        expect(subject.render(message: 'Hello').set_cookie_header).to eq 'key2=value2'
+        expect(subject.render(json: { message: 'Hello' }).set_cookie_header).to eq 'key2=value2'
       end
 
       it 'does add changed cookies from request to response' do
         Genki::Request.current = Genki::Request.new 'HTTP_COOKIE' => 'key=value'
         subject.cookies['key'] = 'new_value'
         subject.cookies['key2'] = 'value2'
-        expect(subject.render(message: 'Hello').set_cookie_header).to eq "key=new_value\nkey2=value2"
+        expect(subject.render(json: { message: 'Hello' }).set_cookie_header).to eq "key=new_value\nkey2=value2"
       end
     end
   end
