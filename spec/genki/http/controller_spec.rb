@@ -105,12 +105,28 @@ describe Genki::Controller do
     end
 
     it 'does return a Response' do
-      expect(subject.render(json: { message: 'Hello' })).to be_a_instance_of(Genki::Response)
+      expect(subject.render).to be_a_instance_of(Genki::Response)
     end
 
     describe 'response return' do
-      it 'does has correctly body ' do
+      it 'does has json body' do
         expect(subject.render(json: { message: 'Hello' }).body).to eql(['{"message":"Hello"}'])
+      end
+
+      it 'does has html body' do
+        allow(File).to receive(:read).and_call_original
+        file = File.expand_path('template.html.erb', './app/views')
+        allow(File).to receive(:read).with(file).and_return('<h1>Header</h1>')
+        expect(subject.render(erb: 'template.html.erb').body).to eql(['<h1>Header</h1>'])
+      end
+
+      it 'does let instance variables available for erb' do
+        allow(File).to receive(:read).and_call_original
+        file = File.expand_path('template.html.erb', './app/views')
+        allow(File).to receive(:read).with(file).and_return('<h1>Header</h1><p><%= @variable %></p>')
+
+        subject.instance_variable_set('@variable', 'value')
+        expect(subject.render(erb: 'template.html.erb').body).to eql(['<h1>Header</h1><p>value</p>'])
       end
 
       it 'does has default status ' do
