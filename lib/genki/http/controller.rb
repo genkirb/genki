@@ -40,10 +40,10 @@ module Genki
       Router.instance.route('PATCH', Route.new((@namespace || []).push(path).join, &block))
     end
 
-    def render(body = {}, status = 200, header = {})
-      header['content-type'] ||= 'application/json'
+    def render(json: nil, erb: nil, headers: {}, status: 200)
+      body = render_json(json, headers) || render_erb(erb, headers) || ''
 
-      response = Response.new(JSON.dump(body), status, header)
+      response = Response.new(body, status, headers)
       cookies.each do |key, value|
         response.set_cookie(key, value) if cookie_changed?(key, value)
       end
@@ -63,6 +63,25 @@ module Genki
     end
 
     private
+
+    def render_json(json, headers)
+      return if json.nil?
+
+      headers['content-type'] ||= 'application/json'
+      JSON.dump(json)
+    end
+
+    def render_erb(view, headers)
+      return if view.nil?
+
+      require 'erubis'
+      file = File.expand_path(view, './app/views')
+      headers['content-type'] ||= 'text/html'
+
+      context = instance_variables.map { |var| [var[1..-1], instance_variable_get(var)] }.to_h
+
+      Erubis::Eruby.new(File.read(file)).evaluate(context)
+    end
 
     def cookie_changed?(key, value)
       request.cookies[key] != value
