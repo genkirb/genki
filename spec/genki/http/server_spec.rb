@@ -11,6 +11,12 @@ describe Genki::Server do
       server = Genki::Server.new options
       expect(server.options).to include options
     end
+
+    it 'does set Genki.env' do
+      options = { environment: 'some_env' }
+      Genki::Server.new options
+      expect(Genki.env).to eq 'some_env'
+    end
   end
 
   describe '.start' do
