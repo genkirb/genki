@@ -1,3 +1,5 @@
+require 'bundler/setup'
+
 module Genki
   #--
   # Genki::Application
@@ -6,6 +8,7 @@ module Genki
   #++
   class Application
     def initialize
+      Bundler.require(:default, Genki.env)
       Dir['./app/**/*.rb'].each { |file| require file }
     end
 

@@ -5,8 +5,17 @@ describe Genki::Application do
   let(:env) { { 'REQUEST_METHOD' => :GET, 'PATH_INFO' => '/' } }
   let(:response) { Genki::Response.new('Hello World', 200, []) }
 
+  before :all do
+    Genki.env = 'test'
+  end
+
   before :each do
     Genki::Request.current = nil
+  end
+
+  it 'does call Bundler.require' do
+    expect(Bundler).to receive(:require).with(:default, 'test')
+    application
   end
 
   it 'does call require on files inside ./app' do
