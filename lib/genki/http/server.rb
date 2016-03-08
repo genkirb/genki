@@ -1,3 +1,4 @@
+require 'genki'
 require 'rack'
 
 module Genki
@@ -9,6 +10,7 @@ module Genki
   class Server < Rack::Server
     def initialize(options = {})
       options = default_options.merge(options)
+      Genki.env = options[:environment]
       super
     end
 

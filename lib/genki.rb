@@ -11,3 +11,9 @@ require 'genki/http/controller'
 require 'genki/http/request'
 require 'genki/http/response'
 require 'genki/http/server'
+
+module Genki
+  class << self
+    attr_accessor :env
+  end
+end

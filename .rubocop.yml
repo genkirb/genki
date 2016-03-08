@@ -9,3 +9,8 @@ Metrics/LineLength:
 Lint/Eval:
   Exclude:
     - 'spec/support/capture.rb'
+
+Style/Documentation:
+  Exclude:
+    - 'spec/**/*'
+    - 'lib/genki.rb'
