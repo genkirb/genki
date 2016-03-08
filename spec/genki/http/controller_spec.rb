@@ -109,15 +109,25 @@ describe Genki::Controller do
     end
 
     describe 'response return' do
-      it 'does has json body' do
-        expect(subject.render(json: { message: 'Hello' }).body).to eql(['{"message":"Hello"}'])
+      it 'does render json body' do
+        rendered = subject.render(json: { message: 'Hello' })
+        expect(rendered.body).to eql(['{"message":"Hello"}'])
+        expect(rendered.headers['Content-Type']).to eql('application/json')
       end
 
-      it 'does has html body' do
+      it 'does render html body' do
         allow(File).to receive(:read).and_call_original
         file = File.expand_path('template.html.erb', './app/views')
         allow(File).to receive(:read).with(file).and_return('<h1>Header</h1>')
-        expect(subject.render(erb: 'template.html.erb').body).to eql(['<h1>Header</h1>'])
+        rendered = subject.render(erb: 'template.html.erb')
+        expect(rendered.body).to eql(['<h1>Header</h1>'])
+        expect(rendered.headers['Content-Type']).to eql('text/html')
+      end
+
+      it 'does render plain text' do
+        rendered = subject.render(text: 'Hello')
+        expect(rendered.body).to eql(['Hello'])
+        expect(rendered.headers['Content-Type']).to eql('text/plain')
       end
 
       it 'does let instance variables available for erb' do
