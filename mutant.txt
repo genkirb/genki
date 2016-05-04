@@ -1,0 +1,2482 @@
+Genki::Application#call:/Users/diego/Projects/genki/lib/genki/http/application.rb:15
+- rspec:22:./spec/genki/http/application_spec.rb:16/Genki::Application does call Bundler.require
+- rspec:23:./spec/genki/http/application_spec.rb:21/Genki::Application does call require on files inside ./app
+- rspec:24:./spec/genki/http/application_spec.rb:29/Genki::Application does call Router.process
+- rspec:25:./spec/genki/http/application_spec.rb:35/Genki::Application does return response
+- rspec:26:./spec/genki/http/application_spec.rb:45/Genki::Application does create Request with env info
+- rspec:27:./spec/genki/http/application_spec.rb:52/Genki::Application does set current request
+- rspec:28:./spec/genki/http/application_spec.rb:60/Genki::Application does rescue RouteNotFoundError
+- rspec:29:./spec/genki/http/application_spec.rb:67/Genki::Application does rescue general Errors
+evil:Genki::Application#call:/Users/diego/Projects/genki/lib/genki/http/application.rb:15:0aaa7
+@@ -1,12 +1,12 @@
+ def call(env)
+   Request.current = Request.new(env)
+   response = Router.instance.process
+ rescue RouteNotFoundError
+   response = Response.new("", 404)
+ rescue StandardError => e
+-  Logger.error(e)
++  nil
+   response = Response.new("", 500)
+ ensure
+   response.finish
+ end
+-----------------------
+evil:Genki::Application#call:/Users/diego/Projects/genki/lib/genki/http/application.rb:15:797c9
+@@ -1,12 +1,12 @@
+ def call(env)
+   Request.current = Request.new(env)
+   response = Router.instance.process
+ rescue RouteNotFoundError
+   response = Response.new("", 404)
+ rescue StandardError => e
+-  Logger.error(e)
++  Logger
+   response = Response.new("", 500)
+ ensure
+   response.finish
+ end
+-----------------------
+evil:Genki::Application#call:/Users/diego/Projects/genki/lib/genki/http/application.rb:15:93c17
+@@ -1,12 +1,12 @@
+ def call(env)
+   Request.current = Request.new(env)
+   response = Router.instance.process
+ rescue RouteNotFoundError
+   response = Response.new("", 404)
+ rescue StandardError => e
+-  Logger.error(e)
++  e
+   response = Response.new("", 500)
+ ensure
+   response.finish
+ end
+-----------------------
+evil:Genki::Application#call:/Users/diego/Projects/genki/lib/genki/http/application.rb:15:0b2df
+@@ -1,12 +1,12 @@
+ def call(env)
+   Request.current = Request.new(env)
+   response = Router.instance.process
+ rescue RouteNotFoundError
+   response = Response.new("", 404)
+ rescue StandardError => e
+-  Logger.error(e)
++  self
+   response = Response.new("", 500)
+ ensure
+   response.finish
+ end
+-----------------------
+evil:Genki::Application#call:/Users/diego/Projects/genki/lib/genki/http/application.rb:15:53be1
+@@ -1,12 +1,12 @@
+ def call(env)
+   Request.current = Request.new(env)
+   response = Router.instance.process
+ rescue RouteNotFoundError
+   response = Response.new("", 404)
+ rescue StandardError => e
+-  Logger.error(e)
++  Logger.error(nil)
+   response = Response.new("", 500)
+ ensure
+   response.finish
+ end
+-----------------------
+evil:Genki::Application#call:/Users/diego/Projects/genki/lib/genki/http/application.rb:15:c8750
+@@ -1,12 +1,12 @@
+ def call(env)
+   Request.current = Request.new(env)
+   response = Router.instance.process
+ rescue RouteNotFoundError
+   response = Response.new("", 404)
+ rescue StandardError => e
+-  Logger.error(e)
++  Logger.error(self)
+   response = Response.new("", 500)
+ ensure
+   response.finish
+ end
+-----------------------
+evil:Genki::Application#call:/Users/diego/Projects/genki/lib/genki/http/application.rb:15:579f3
+@@ -1,12 +1,11 @@
+ def call(env)
+   Request.current = Request.new(env)
+   response = Router.instance.process
+ rescue RouteNotFoundError
+   response = Response.new("", 404)
+ rescue StandardError => e
+-  Logger.error(e)
+   response = Response.new("", 500)
+ ensure
+   response.finish
+ end
+-----------------------
+evil:Genki::Application#call:/Users/diego/Projects/genki/lib/genki/http/application.rb:15:19342
+@@ -1,12 +1,12 @@
+ def call(env)
+   Request.current = Request.new(env)
+   response = Router.instance.process
+ rescue RouteNotFoundError
+   response = Response.new("", 404)
+ rescue StandardError => e
+   Logger.error(e)
+   response = Response.new("", 500)
+ ensure
+-  response.finish
++  nil
+ end
+-----------------------
+evil:Genki::Application#call:/Users/diego/Projects/genki/lib/genki/http/application.rb:15:6caee
+@@ -1,12 +1,12 @@
+ def call(env)
+   Request.current = Request.new(env)
+   response = Router.instance.process
+ rescue RouteNotFoundError
+   response = Response.new("", 404)
+ rescue StandardError => e
+   Logger.error(e)
+   response = Response.new("", 500)
+ ensure
+-  response.finish
++  self
+ end
+-----------------------
+evil:Genki::Application#call:/Users/diego/Projects/genki/lib/genki/http/application.rb:15:9e271
+@@ -1,12 +1,12 @@
+ def call(env)
+   Request.current = Request.new(env)
+   response = Router.instance.process
+ rescue RouteNotFoundError
+   response = Response.new("", 404)
+ rescue StandardError => e
+   Logger.error(e)
+   response = Response.new("", 500)
+ ensure
+-  response.finish
++  response
+ end
+-----------------------
+Genki::Application#initialize:/Users/diego/Projects/genki/lib/genki/http/application.rb:10
+- rspec:22:./spec/genki/http/application_spec.rb:16/Genki::Application does call Bundler.require
+- rspec:23:./spec/genki/http/application_spec.rb:21/Genki::Application does call require on files inside ./app
+- rspec:24:./spec/genki/http/application_spec.rb:29/Genki::Application does call Router.process
+- rspec:25:./spec/genki/http/application_spec.rb:35/Genki::Application does return response
+- rspec:26:./spec/genki/http/application_spec.rb:45/Genki::Application does create Request with env info
+- rspec:27:./spec/genki/http/application_spec.rb:52/Genki::Application does set current request
+- rspec:28:./spec/genki/http/application_spec.rb:60/Genki::Application does rescue RouteNotFoundError
+- rspec:29:./spec/genki/http/application_spec.rb:67/Genki::Application does rescue general Errors
+evil:Genki::Application#initialize:/Users/diego/Projects/genki/lib/genki/http/application.rb:10:011a9
+@@ -1,7 +1,7 @@
+ def initialize
+   Bundler.require(:default, Genki.env)
+-  Dir["./app/**/*.rb"].each do |file|
++  Dir[].each do |file|
+     require(file)
+   end
+ end
+-----------------------
+Genki::Cli#server:/Users/diego/Projects/genki/lib/genki/cli.rb:33
+- rspec:0:./spec/genki/cli_spec.rb:11/Genki::Cli#start exits on error
+- rspec:1:./spec/genki/cli_spec.rb:15/Genki::Cli#start exits with status code 1 when error
+- rspec:2:./spec/genki/cli_spec.rb:25/Genki::Cli.new requires an argument
+- rspec:3:./spec/genki/cli_spec.rb:29/Genki::Cli.new calls the Genki::Generators::App
+- rspec:4:./spec/genki/cli_spec.rb:38/Genki::Cli.version returns the version
+- rspec:5:./spec/genki/cli_spec.rb:42/Genki::Cli.version returns the same as -v
+- rspec:6:./spec/genki/cli_spec.rb:46/Genki::Cli.version returns the same as --version
+- rspec:7:./spec/genki/cli_spec.rb:54/Genki::Cli.server invokes start on Genki::Server
+- rspec:8:./spec/genki/cli_spec.rb:59/Genki::Cli.server passes the short options to Genki::Server
+- rspec:9:./spec/genki/cli_spec.rb:63/Genki::Cli.server passes the short options to Genki::Server
+evil:Genki::Cli#server:/Users/diego/Projects/genki/lib/genki/cli.rb:33:9d13b
+@@ -1,5 +1,5 @@
+ def server
+   opt = { Port: options["port"], Host: options["binding"], environment: options["environment"] }
+-  Genki::Server.new(opt).start
++  Server.new(opt).start
+ end
+-----------------------
+Genki::Cli#version:/Users/diego/Projects/genki/lib/genki/cli.rb:22
+- rspec:0:./spec/genki/cli_spec.rb:11/Genki::Cli#start exits on error
+- rspec:1:./spec/genki/cli_spec.rb:15/Genki::Cli#start exits with status code 1 when error
+- rspec:2:./spec/genki/cli_spec.rb:25/Genki::Cli.new requires an argument
+- rspec:3:./spec/genki/cli_spec.rb:29/Genki::Cli.new calls the Genki::Generators::App
+- rspec:4:./spec/genki/cli_spec.rb:38/Genki::Cli.version returns the version
+- rspec:5:./spec/genki/cli_spec.rb:42/Genki::Cli.version returns the same as -v
+- rspec:6:./spec/genki/cli_spec.rb:46/Genki::Cli.version returns the same as --version
+- rspec:7:./spec/genki/cli_spec.rb:54/Genki::Cli.server invokes start on Genki::Server
+- rspec:8:./spec/genki/cli_spec.rb:59/Genki::Cli.server passes the short options to Genki::Server
+- rspec:9:./spec/genki/cli_spec.rb:63/Genki::Cli.server passes the short options to Genki::Server
+evil:Genki::Cli#version:/Users/diego/Projects/genki/lib/genki/cli.rb:22:912bc
+@@ -1,4 +1,4 @@
+ def version
+-  say("#{"Genki "}#{Genki::VERSION}")
++  say("#{"Genki "}#{VERSION}")
+ end
+-----------------------
+Genki::Controller.delete:/Users/diego/Projects/genki/lib/genki/http/controller.rb:31
+- rspec:30:./spec/genki/http/controller_spec.rb:7/Genki::Controller#get does call Router.route
+- rspec:31:./spec/genki/http/controller_spec.rb:13/Genki::Controller#get does create a correctly Route
+- rspec:32:./spec/genki/http/controller_spec.rb:23/Genki::Controller#post does call Router.route
+- rspec:33:./spec/genki/http/controller_spec.rb:29/Genki::Controller#post does create a correctly Route
+- rspec:34:./spec/genki/http/controller_spec.rb:39/Genki::Controller#put does call Router.route
+- rspec:35:./spec/genki/http/controller_spec.rb:45/Genki::Controller#put does create a correctly Route
+- rspec:36:./spec/genki/http/controller_spec.rb:55/Genki::Controller#delete does call Router.route
+- rspec:37:./spec/genki/http/controller_spec.rb:61/Genki::Controller#delete does create a correctly Route
+- rspec:38:./spec/genki/http/controller_spec.rb:71/Genki::Controller#options does call Router.route
+- rspec:39:./spec/genki/http/controller_spec.rb:77/Genki::Controller#options does create a correctly Route
+- rspec:40:./spec/genki/http/controller_spec.rb:87/Genki::Controller#patch does call Router.route
+- rspec:41:./spec/genki/http/controller_spec.rb:93/Genki::Controller#patch does create a correctly Route
+- rspec:42:./spec/genki/http/controller_spec.rb:107/Genki::Controller.render does return a Response
+- rspec:43:./spec/genki/http/controller_spec.rb:112/Genki::Controller.render response return does render json body
+- rspec:44:./spec/genki/http/controller_spec.rb:118/Genki::Controller.render response return does render html body
+- rspec:45:./spec/genki/http/controller_spec.rb:127/Genki::Controller.render response return does render plain text
+- rspec:46:./spec/genki/http/controller_spec.rb:133/Genki::Controller.render response return does let instance variables available for erb
+- rspec:47:./spec/genki/http/controller_spec.rb:142/Genki::Controller.render response return does has default status
+- rspec:48:./spec/genki/http/controller_spec.rb:146/Genki::Controller.render response return does has default header
+- rspec:49:./spec/genki/http/controller_spec.rb:150/Genki::Controller.render response return does has correctly status
+- rspec:50:./spec/genki/http/controller_spec.rb:154/Genki::Controller.render response return does has correctly header
+- rspec:51:./spec/genki/http/controller_spec.rb:159/Genki::Controller.render response return does add cookies to the response
+- rspec:52:./spec/genki/http/controller_spec.rb:164/Genki::Controller.render response return does not add unchanged from request cookies to the response
+- rspec:53:./spec/genki/http/controller_spec.rb:170/Genki::Controller.render response return does add changed cookies from request to response
+- rspec:54:./spec/genki/http/controller_spec.rb:180/Genki::Controller namespace does set namespace
+- rspec:55:./spec/genki/http/controller_spec.rb:189/Genki::Controller namespace does accept nested namespace
+- rspec:56:./spec/genki/http/controller_spec.rb:202/Genki::Controller.request does call thread current
+- rspec:57:./spec/genki/http/controller_spec.rb:210/Genki::Controller.params does return params
+- rspec:58:./spec/genki/http/controller_spec.rb:223/Genki::Controller.cookies does set instance variable
+- rspec:59:./spec/genki/http/controller_spec.rb:229/Genki::Controller.cookies does retrive request cookies
+- rspec:60:./spec/genki/http/controller_spec.rb:233/Genki::Controller.cookies does store a new cookie
+evil:Genki::Controller.delete:/Users/diego/Projects/genki/lib/genki/http/controller.rb:31:0aacf
+@@ -1,4 +1,4 @@
+ def self.delete(path, &block)
+-  Router.instance.route("DELETE", Route.new((@namespace || []).push(path).join, &block))
++  Router.instance.route("DELETE", Route.new([].push(path).join, &block))
+ end
+-----------------------
+evil:Genki::Controller.delete:/Users/diego/Projects/genki/lib/genki/http/controller.rb:31:b25d0
+@@ -1,4 +1,4 @@
+ def self.delete(path, &block)
+-  Router.instance.route("DELETE", Route.new((@namespace || []).push(path).join, &block))
++  Router.instance.route("DELETE", Route.new((nil || []).push(path).join, &block))
+ end
+-----------------------
+evil:Genki::Controller.delete:/Users/diego/Projects/genki/lib/genki/http/controller.rb:31:4a93f
+@@ -1,4 +1,4 @@
+ def self.delete(path, &block)
+-  Router.instance.route("DELETE", Route.new((@namespace || []).push(path).join, &block))
++  Router.instance.route("DELETE", Route.new((@namespace || []).push(path).join))
+ end
+-----------------------
+Genki::Controller.get:/Users/diego/Projects/genki/lib/genki/http/controller.rb:19
+- rspec:30:./spec/genki/http/controller_spec.rb:7/Genki::Controller#get does call Router.route
+- rspec:31:./spec/genki/http/controller_spec.rb:13/Genki::Controller#get does create a correctly Route
+- rspec:32:./spec/genki/http/controller_spec.rb:23/Genki::Controller#post does call Router.route
+- rspec:33:./spec/genki/http/controller_spec.rb:29/Genki::Controller#post does create a correctly Route
+- rspec:34:./spec/genki/http/controller_spec.rb:39/Genki::Controller#put does call Router.route
+- rspec:35:./spec/genki/http/controller_spec.rb:45/Genki::Controller#put does create a correctly Route
+- rspec:36:./spec/genki/http/controller_spec.rb:55/Genki::Controller#delete does call Router.route
+- rspec:37:./spec/genki/http/controller_spec.rb:61/Genki::Controller#delete does create a correctly Route
+- rspec:38:./spec/genki/http/controller_spec.rb:71/Genki::Controller#options does call Router.route
+- rspec:39:./spec/genki/http/controller_spec.rb:77/Genki::Controller#options does create a correctly Route
+- rspec:40:./spec/genki/http/controller_spec.rb:87/Genki::Controller#patch does call Router.route
+- rspec:41:./spec/genki/http/controller_spec.rb:93/Genki::Controller#patch does create a correctly Route
+- rspec:42:./spec/genki/http/controller_spec.rb:107/Genki::Controller.render does return a Response
+- rspec:43:./spec/genki/http/controller_spec.rb:112/Genki::Controller.render response return does render json body
+- rspec:44:./spec/genki/http/controller_spec.rb:118/Genki::Controller.render response return does render html body
+- rspec:45:./spec/genki/http/controller_spec.rb:127/Genki::Controller.render response return does render plain text
+- rspec:46:./spec/genki/http/controller_spec.rb:133/Genki::Controller.render response return does let instance variables available for erb
+- rspec:47:./spec/genki/http/controller_spec.rb:142/Genki::Controller.render response return does has default status
+- rspec:48:./spec/genki/http/controller_spec.rb:146/Genki::Controller.render response return does has default header
+- rspec:49:./spec/genki/http/controller_spec.rb:150/Genki::Controller.render response return does has correctly status
+- rspec:50:./spec/genki/http/controller_spec.rb:154/Genki::Controller.render response return does has correctly header
+- rspec:51:./spec/genki/http/controller_spec.rb:159/Genki::Controller.render response return does add cookies to the response
+- rspec:52:./spec/genki/http/controller_spec.rb:164/Genki::Controller.render response return does not add unchanged from request cookies to the response
+- rspec:53:./spec/genki/http/controller_spec.rb:170/Genki::Controller.render response return does add changed cookies from request to response
+- rspec:54:./spec/genki/http/controller_spec.rb:180/Genki::Controller namespace does set namespace
+- rspec:55:./spec/genki/http/controller_spec.rb:189/Genki::Controller namespace does accept nested namespace
+- rspec:56:./spec/genki/http/controller_spec.rb:202/Genki::Controller.request does call thread current
+- rspec:57:./spec/genki/http/controller_spec.rb:210/Genki::Controller.params does return params
+- rspec:58:./spec/genki/http/controller_spec.rb:223/Genki::Controller.cookies does set instance variable
+- rspec:59:./spec/genki/http/controller_spec.rb:229/Genki::Controller.cookies does retrive request cookies
+- rspec:60:./spec/genki/http/controller_spec.rb:233/Genki::Controller.cookies does store a new cookie
+evil:Genki::Controller.get:/Users/diego/Projects/genki/lib/genki/http/controller.rb:19:23479
+@@ -1,4 +1,4 @@
+ def self.get(path, &block)
+-  Router.instance.route("GET", Route.new((@namespace || []).push(path).join, &block))
++  Router.instance.route("GET", Route.new((@namespace || []).push(path).join))
+ end
+-----------------------
+Genki::Controller.options:/Users/diego/Projects/genki/lib/genki/http/controller.rb:35
+- rspec:30:./spec/genki/http/controller_spec.rb:7/Genki::Controller#get does call Router.route
+- rspec:31:./spec/genki/http/controller_spec.rb:13/Genki::Controller#get does create a correctly Route
+- rspec:32:./spec/genki/http/controller_spec.rb:23/Genki::Controller#post does call Router.route
+- rspec:33:./spec/genki/http/controller_spec.rb:29/Genki::Controller#post does create a correctly Route
+- rspec:34:./spec/genki/http/controller_spec.rb:39/Genki::Controller#put does call Router.route
+- rspec:35:./spec/genki/http/controller_spec.rb:45/Genki::Controller#put does create a correctly Route
+- rspec:36:./spec/genki/http/controller_spec.rb:55/Genki::Controller#delete does call Router.route
+- rspec:37:./spec/genki/http/controller_spec.rb:61/Genki::Controller#delete does create a correctly Route
+- rspec:38:./spec/genki/http/controller_spec.rb:71/Genki::Controller#options does call Router.route
+- rspec:39:./spec/genki/http/controller_spec.rb:77/Genki::Controller#options does create a correctly Route
+- rspec:40:./spec/genki/http/controller_spec.rb:87/Genki::Controller#patch does call Router.route
+- rspec:41:./spec/genki/http/controller_spec.rb:93/Genki::Controller#patch does create a correctly Route
+- rspec:42:./spec/genki/http/controller_spec.rb:107/Genki::Controller.render does return a Response
+- rspec:43:./spec/genki/http/controller_spec.rb:112/Genki::Controller.render response return does render json body
+- rspec:44:./spec/genki/http/controller_spec.rb:118/Genki::Controller.render response return does render html body
+- rspec:45:./spec/genki/http/controller_spec.rb:127/Genki::Controller.render response return does render plain text
+- rspec:46:./spec/genki/http/controller_spec.rb:133/Genki::Controller.render response return does let instance variables available for erb
+- rspec:47:./spec/genki/http/controller_spec.rb:142/Genki::Controller.render response return does has default status
+- rspec:48:./spec/genki/http/controller_spec.rb:146/Genki::Controller.render response return does has default header
+- rspec:49:./spec/genki/http/controller_spec.rb:150/Genki::Controller.render response return does has correctly status
+- rspec:50:./spec/genki/http/controller_spec.rb:154/Genki::Controller.render response return does has correctly header
+- rspec:51:./spec/genki/http/controller_spec.rb:159/Genki::Controller.render response return does add cookies to the response
+- rspec:52:./spec/genki/http/controller_spec.rb:164/Genki::Controller.render response return does not add unchanged from request cookies to the response
+- rspec:53:./spec/genki/http/controller_spec.rb:170/Genki::Controller.render response return does add changed cookies from request to response
+- rspec:54:./spec/genki/http/controller_spec.rb:180/Genki::Controller namespace does set namespace
+- rspec:55:./spec/genki/http/controller_spec.rb:189/Genki::Controller namespace does accept nested namespace
+- rspec:56:./spec/genki/http/controller_spec.rb:202/Genki::Controller.request does call thread current
+- rspec:57:./spec/genki/http/controller_spec.rb:210/Genki::Controller.params does return params
+- rspec:58:./spec/genki/http/controller_spec.rb:223/Genki::Controller.cookies does set instance variable
+- rspec:59:./spec/genki/http/controller_spec.rb:229/Genki::Controller.cookies does retrive request cookies
+- rspec:60:./spec/genki/http/controller_spec.rb:233/Genki::Controller.cookies does store a new cookie
+evil:Genki::Controller.options:/Users/diego/Projects/genki/lib/genki/http/controller.rb:35:7885c
+@@ -1,4 +1,4 @@
+ def self.options(path, &block)
+-  Router.instance.route("OPTIONS", Route.new((@namespace || []).push(path).join, &block))
++  Router.instance.route("OPTIONS", Route.new([].push(path).join, &block))
+ end
+-----------------------
+evil:Genki::Controller.options:/Users/diego/Projects/genki/lib/genki/http/controller.rb:35:4011b
+@@ -1,4 +1,4 @@
+ def self.options(path, &block)
+-  Router.instance.route("OPTIONS", Route.new((@namespace || []).push(path).join, &block))
++  Router.instance.route("OPTIONS", Route.new((nil || []).push(path).join, &block))
+ end
+-----------------------
+evil:Genki::Controller.options:/Users/diego/Projects/genki/lib/genki/http/controller.rb:35:74340
+@@ -1,4 +1,4 @@
+ def self.options(path, &block)
+-  Router.instance.route("OPTIONS", Route.new((@namespace || []).push(path).join, &block))
++  Router.instance.route("OPTIONS", Route.new((@namespace || []).push(path).join))
+ end
+-----------------------
+Genki::Controller.patch:/Users/diego/Projects/genki/lib/genki/http/controller.rb:39
+- rspec:30:./spec/genki/http/controller_spec.rb:7/Genki::Controller#get does call Router.route
+- rspec:31:./spec/genki/http/controller_spec.rb:13/Genki::Controller#get does create a correctly Route
+- rspec:32:./spec/genki/http/controller_spec.rb:23/Genki::Controller#post does call Router.route
+- rspec:33:./spec/genki/http/controller_spec.rb:29/Genki::Controller#post does create a correctly Route
+- rspec:34:./spec/genki/http/controller_spec.rb:39/Genki::Controller#put does call Router.route
+- rspec:35:./spec/genki/http/controller_spec.rb:45/Genki::Controller#put does create a correctly Route
+- rspec:36:./spec/genki/http/controller_spec.rb:55/Genki::Controller#delete does call Router.route
+- rspec:37:./spec/genki/http/controller_spec.rb:61/Genki::Controller#delete does create a correctly Route
+- rspec:38:./spec/genki/http/controller_spec.rb:71/Genki::Controller#options does call Router.route
+- rspec:39:./spec/genki/http/controller_spec.rb:77/Genki::Controller#options does create a correctly Route
+- rspec:40:./spec/genki/http/controller_spec.rb:87/Genki::Controller#patch does call Router.route
+- rspec:41:./spec/genki/http/controller_spec.rb:93/Genki::Controller#patch does create a correctly Route
+- rspec:42:./spec/genki/http/controller_spec.rb:107/Genki::Controller.render does return a Response
+- rspec:43:./spec/genki/http/controller_spec.rb:112/Genki::Controller.render response return does render json body
+- rspec:44:./spec/genki/http/controller_spec.rb:118/Genki::Controller.render response return does render html body
+- rspec:45:./spec/genki/http/controller_spec.rb:127/Genki::Controller.render response return does render plain text
+- rspec:46:./spec/genki/http/controller_spec.rb:133/Genki::Controller.render response return does let instance variables available for erb
+- rspec:47:./spec/genki/http/controller_spec.rb:142/Genki::Controller.render response return does has default status
+- rspec:48:./spec/genki/http/controller_spec.rb:146/Genki::Controller.render response return does has default header
+- rspec:49:./spec/genki/http/controller_spec.rb:150/Genki::Controller.render response return does has correctly status
+- rspec:50:./spec/genki/http/controller_spec.rb:154/Genki::Controller.render response return does has correctly header
+- rspec:51:./spec/genki/http/controller_spec.rb:159/Genki::Controller.render response return does add cookies to the response
+- rspec:52:./spec/genki/http/controller_spec.rb:164/Genki::Controller.render response return does not add unchanged from request cookies to the response
+- rspec:53:./spec/genki/http/controller_spec.rb:170/Genki::Controller.render response return does add changed cookies from request to response
+- rspec:54:./spec/genki/http/controller_spec.rb:180/Genki::Controller namespace does set namespace
+- rspec:55:./spec/genki/http/controller_spec.rb:189/Genki::Controller namespace does accept nested namespace
+- rspec:56:./spec/genki/http/controller_spec.rb:202/Genki::Controller.request does call thread current
+- rspec:57:./spec/genki/http/controller_spec.rb:210/Genki::Controller.params does return params
+- rspec:58:./spec/genki/http/controller_spec.rb:223/Genki::Controller.cookies does set instance variable
+- rspec:59:./spec/genki/http/controller_spec.rb:229/Genki::Controller.cookies does retrive request cookies
+- rspec:60:./spec/genki/http/controller_spec.rb:233/Genki::Controller.cookies does store a new cookie
+evil:Genki::Controller.patch:/Users/diego/Projects/genki/lib/genki/http/controller.rb:39:a16da
+@@ -1,4 +1,4 @@
+ def self.patch(path, &block)
+-  Router.instance.route("PATCH", Route.new((@namespace || []).push(path).join, &block))
++  Router.instance.route("PATCH", Route.new([].push(path).join, &block))
+ end
+-----------------------
+evil:Genki::Controller.patch:/Users/diego/Projects/genki/lib/genki/http/controller.rb:39:0162f
+@@ -1,4 +1,4 @@
+ def self.patch(path, &block)
+-  Router.instance.route("PATCH", Route.new((@namespace || []).push(path).join, &block))
++  Router.instance.route("PATCH", Route.new((nil || []).push(path).join, &block))
+ end
+-----------------------
+evil:Genki::Controller.patch:/Users/diego/Projects/genki/lib/genki/http/controller.rb:39:abbdf
+@@ -1,4 +1,4 @@
+ def self.patch(path, &block)
+-  Router.instance.route("PATCH", Route.new((@namespace || []).push(path).join, &block))
++  Router.instance.route("PATCH", Route.new((@namespace || []).push(path).join))
+ end
+-----------------------
+Genki::Controller.post:/Users/diego/Projects/genki/lib/genki/http/controller.rb:23
+- rspec:30:./spec/genki/http/controller_spec.rb:7/Genki::Controller#get does call Router.route
+- rspec:31:./spec/genki/http/controller_spec.rb:13/Genki::Controller#get does create a correctly Route
+- rspec:32:./spec/genki/http/controller_spec.rb:23/Genki::Controller#post does call Router.route
+- rspec:33:./spec/genki/http/controller_spec.rb:29/Genki::Controller#post does create a correctly Route
+- rspec:34:./spec/genki/http/controller_spec.rb:39/Genki::Controller#put does call Router.route
+- rspec:35:./spec/genki/http/controller_spec.rb:45/Genki::Controller#put does create a correctly Route
+- rspec:36:./spec/genki/http/controller_spec.rb:55/Genki::Controller#delete does call Router.route
+- rspec:37:./spec/genki/http/controller_spec.rb:61/Genki::Controller#delete does create a correctly Route
+- rspec:38:./spec/genki/http/controller_spec.rb:71/Genki::Controller#options does call Router.route
+- rspec:39:./spec/genki/http/controller_spec.rb:77/Genki::Controller#options does create a correctly Route
+- rspec:40:./spec/genki/http/controller_spec.rb:87/Genki::Controller#patch does call Router.route
+- rspec:41:./spec/genki/http/controller_spec.rb:93/Genki::Controller#patch does create a correctly Route
+- rspec:42:./spec/genki/http/controller_spec.rb:107/Genki::Controller.render does return a Response
+- rspec:43:./spec/genki/http/controller_spec.rb:112/Genki::Controller.render response return does render json body
+- rspec:44:./spec/genki/http/controller_spec.rb:118/Genki::Controller.render response return does render html body
+- rspec:45:./spec/genki/http/controller_spec.rb:127/Genki::Controller.render response return does render plain text
+- rspec:46:./spec/genki/http/controller_spec.rb:133/Genki::Controller.render response return does let instance variables available for erb
+- rspec:47:./spec/genki/http/controller_spec.rb:142/Genki::Controller.render response return does has default status
+- rspec:48:./spec/genki/http/controller_spec.rb:146/Genki::Controller.render response return does has default header
+- rspec:49:./spec/genki/http/controller_spec.rb:150/Genki::Controller.render response return does has correctly status
+- rspec:50:./spec/genki/http/controller_spec.rb:154/Genki::Controller.render response return does has correctly header
+- rspec:51:./spec/genki/http/controller_spec.rb:159/Genki::Controller.render response return does add cookies to the response
+- rspec:52:./spec/genki/http/controller_spec.rb:164/Genki::Controller.render response return does not add unchanged from request cookies to the response
+- rspec:53:./spec/genki/http/controller_spec.rb:170/Genki::Controller.render response return does add changed cookies from request to response
+- rspec:54:./spec/genki/http/controller_spec.rb:180/Genki::Controller namespace does set namespace
+- rspec:55:./spec/genki/http/controller_spec.rb:189/Genki::Controller namespace does accept nested namespace
+- rspec:56:./spec/genki/http/controller_spec.rb:202/Genki::Controller.request does call thread current
+- rspec:57:./spec/genki/http/controller_spec.rb:210/Genki::Controller.params does return params
+- rspec:58:./spec/genki/http/controller_spec.rb:223/Genki::Controller.cookies does set instance variable
+- rspec:59:./spec/genki/http/controller_spec.rb:229/Genki::Controller.cookies does retrive request cookies
+- rspec:60:./spec/genki/http/controller_spec.rb:233/Genki::Controller.cookies does store a new cookie
+evil:Genki::Controller.post:/Users/diego/Projects/genki/lib/genki/http/controller.rb:23:deed9
+@@ -1,4 +1,4 @@
+ def self.post(path, &block)
+-  Router.instance.route("POST", Route.new((@namespace || []).push(path).join, &block))
++  Router.instance.route("POST", Route.new([].push(path).join, &block))
+ end
+-----------------------
+evil:Genki::Controller.post:/Users/diego/Projects/genki/lib/genki/http/controller.rb:23:4ea87
+@@ -1,4 +1,4 @@
+ def self.post(path, &block)
+-  Router.instance.route("POST", Route.new((@namespace || []).push(path).join, &block))
++  Router.instance.route("POST", Route.new((nil || []).push(path).join, &block))
+ end
+-----------------------
+evil:Genki::Controller.post:/Users/diego/Projects/genki/lib/genki/http/controller.rb:23:8cdf4
+@@ -1,4 +1,4 @@
+ def self.post(path, &block)
+-  Router.instance.route("POST", Route.new((@namespace || []).push(path).join, &block))
++  Router.instance.route("POST", Route.new((@namespace || []).push(path).join))
+ end
+-----------------------
+Genki::Controller.put:/Users/diego/Projects/genki/lib/genki/http/controller.rb:27
+- rspec:30:./spec/genki/http/controller_spec.rb:7/Genki::Controller#get does call Router.route
+- rspec:31:./spec/genki/http/controller_spec.rb:13/Genki::Controller#get does create a correctly Route
+- rspec:32:./spec/genki/http/controller_spec.rb:23/Genki::Controller#post does call Router.route
+- rspec:33:./spec/genki/http/controller_spec.rb:29/Genki::Controller#post does create a correctly Route
+- rspec:34:./spec/genki/http/controller_spec.rb:39/Genki::Controller#put does call Router.route
+- rspec:35:./spec/genki/http/controller_spec.rb:45/Genki::Controller#put does create a correctly Route
+- rspec:36:./spec/genki/http/controller_spec.rb:55/Genki::Controller#delete does call Router.route
+- rspec:37:./spec/genki/http/controller_spec.rb:61/Genki::Controller#delete does create a correctly Route
+- rspec:38:./spec/genki/http/controller_spec.rb:71/Genki::Controller#options does call Router.route
+- rspec:39:./spec/genki/http/controller_spec.rb:77/Genki::Controller#options does create a correctly Route
+- rspec:40:./spec/genki/http/controller_spec.rb:87/Genki::Controller#patch does call Router.route
+- rspec:41:./spec/genki/http/controller_spec.rb:93/Genki::Controller#patch does create a correctly Route
+- rspec:42:./spec/genki/http/controller_spec.rb:107/Genki::Controller.render does return a Response
+- rspec:43:./spec/genki/http/controller_spec.rb:112/Genki::Controller.render response return does render json body
+- rspec:44:./spec/genki/http/controller_spec.rb:118/Genki::Controller.render response return does render html body
+- rspec:45:./spec/genki/http/controller_spec.rb:127/Genki::Controller.render response return does render plain text
+- rspec:46:./spec/genki/http/controller_spec.rb:133/Genki::Controller.render response return does let instance variables available for erb
+- rspec:47:./spec/genki/http/controller_spec.rb:142/Genki::Controller.render response return does has default status
+- rspec:48:./spec/genki/http/controller_spec.rb:146/Genki::Controller.render response return does has default header
+- rspec:49:./spec/genki/http/controller_spec.rb:150/Genki::Controller.render response return does has correctly status
+- rspec:50:./spec/genki/http/controller_spec.rb:154/Genki::Controller.render response return does has correctly header
+- rspec:51:./spec/genki/http/controller_spec.rb:159/Genki::Controller.render response return does add cookies to the response
+- rspec:52:./spec/genki/http/controller_spec.rb:164/Genki::Controller.render response return does not add unchanged from request cookies to the response
+- rspec:53:./spec/genki/http/controller_spec.rb:170/Genki::Controller.render response return does add changed cookies from request to response
+- rspec:54:./spec/genki/http/controller_spec.rb:180/Genki::Controller namespace does set namespace
+- rspec:55:./spec/genki/http/controller_spec.rb:189/Genki::Controller namespace does accept nested namespace
+- rspec:56:./spec/genki/http/controller_spec.rb:202/Genki::Controller.request does call thread current
+- rspec:57:./spec/genki/http/controller_spec.rb:210/Genki::Controller.params does return params
+- rspec:58:./spec/genki/http/controller_spec.rb:223/Genki::Controller.cookies does set instance variable
+- rspec:59:./spec/genki/http/controller_spec.rb:229/Genki::Controller.cookies does retrive request cookies
+- rspec:60:./spec/genki/http/controller_spec.rb:233/Genki::Controller.cookies does store a new cookie
+evil:Genki::Controller.put:/Users/diego/Projects/genki/lib/genki/http/controller.rb:27:7a216
+@@ -1,4 +1,4 @@
+ def self.put(path, &block)
+-  Router.instance.route("PUT", Route.new((@namespace || []).push(path).join, &block))
++  Router.instance.route("PUT", Route.new([].push(path).join, &block))
+ end
+-----------------------
+evil:Genki::Controller.put:/Users/diego/Projects/genki/lib/genki/http/controller.rb:27:cbcb4
+@@ -1,4 +1,4 @@
+ def self.put(path, &block)
+-  Router.instance.route("PUT", Route.new((@namespace || []).push(path).join, &block))
++  Router.instance.route("PUT", Route.new((nil || []).push(path).join, &block))
+ end
+-----------------------
+evil:Genki::Controller.put:/Users/diego/Projects/genki/lib/genki/http/controller.rb:27:ac7e7
+@@ -1,4 +1,4 @@
+ def self.put(path, &block)
+-  Router.instance.route("PUT", Route.new((@namespace || []).push(path).join, &block))
++  Router.instance.route("PUT", Route.new((@namespace || []).push(path).join))
+ end
+-----------------------
+Genki::Controller#cookie_changed?:/Users/diego/Projects/genki/lib/genki/http/controller.rb:93
+- rspec:30:./spec/genki/http/controller_spec.rb:7/Genki::Controller#get does call Router.route
+- rspec:31:./spec/genki/http/controller_spec.rb:13/Genki::Controller#get does create a correctly Route
+- rspec:32:./spec/genki/http/controller_spec.rb:23/Genki::Controller#post does call Router.route
+- rspec:33:./spec/genki/http/controller_spec.rb:29/Genki::Controller#post does create a correctly Route
+- rspec:34:./spec/genki/http/controller_spec.rb:39/Genki::Controller#put does call Router.route
+- rspec:35:./spec/genki/http/controller_spec.rb:45/Genki::Controller#put does create a correctly Route
+- rspec:36:./spec/genki/http/controller_spec.rb:55/Genki::Controller#delete does call Router.route
+- rspec:37:./spec/genki/http/controller_spec.rb:61/Genki::Controller#delete does create a correctly Route
+- rspec:38:./spec/genki/http/controller_spec.rb:71/Genki::Controller#options does call Router.route
+- rspec:39:./spec/genki/http/controller_spec.rb:77/Genki::Controller#options does create a correctly Route
+- rspec:40:./spec/genki/http/controller_spec.rb:87/Genki::Controller#patch does call Router.route
+- rspec:41:./spec/genki/http/controller_spec.rb:93/Genki::Controller#patch does create a correctly Route
+- rspec:42:./spec/genki/http/controller_spec.rb:107/Genki::Controller.render does return a Response
+- rspec:43:./spec/genki/http/controller_spec.rb:112/Genki::Controller.render response return does render json body
+- rspec:44:./spec/genki/http/controller_spec.rb:118/Genki::Controller.render response return does render html body
+- rspec:45:./spec/genki/http/controller_spec.rb:127/Genki::Controller.render response return does render plain text
+- rspec:46:./spec/genki/http/controller_spec.rb:133/Genki::Controller.render response return does let instance variables available for erb
+- rspec:47:./spec/genki/http/controller_spec.rb:142/Genki::Controller.render response return does has default status
+- rspec:48:./spec/genki/http/controller_spec.rb:146/Genki::Controller.render response return does has default header
+- rspec:49:./spec/genki/http/controller_spec.rb:150/Genki::Controller.render response return does has correctly status
+- rspec:50:./spec/genki/http/controller_spec.rb:154/Genki::Controller.render response return does has correctly header
+- rspec:51:./spec/genki/http/controller_spec.rb:159/Genki::Controller.render response return does add cookies to the response
+- rspec:52:./spec/genki/http/controller_spec.rb:164/Genki::Controller.render response return does not add unchanged from request cookies to the response
+- rspec:53:./spec/genki/http/controller_spec.rb:170/Genki::Controller.render response return does add changed cookies from request to response
+- rspec:54:./spec/genki/http/controller_spec.rb:180/Genki::Controller namespace does set namespace
+- rspec:55:./spec/genki/http/controller_spec.rb:189/Genki::Controller namespace does accept nested namespace
+- rspec:56:./spec/genki/http/controller_spec.rb:202/Genki::Controller.request does call thread current
+- rspec:57:./spec/genki/http/controller_spec.rb:210/Genki::Controller.params does return params
+- rspec:58:./spec/genki/http/controller_spec.rb:223/Genki::Controller.cookies does set instance variable
+- rspec:59:./spec/genki/http/controller_spec.rb:229/Genki::Controller.cookies does retrive request cookies
+- rspec:60:./spec/genki/http/controller_spec.rb:233/Genki::Controller.cookies does store a new cookie
+evil:Genki::Controller#cookie_changed?:/Users/diego/Projects/genki/lib/genki/http/controller.rb:93:3d318
+@@ -1,4 +1,4 @@
+ def cookie_changed?(key, value)
+-  request.cookies[key] != value
++  self
+ end
+-----------------------
+evil:Genki::Controller#cookie_changed?:/Users/diego/Projects/genki/lib/genki/http/controller.rb:93:5e05d
+@@ -1,4 +1,4 @@
+ def cookie_changed?(key, value)
+-  request.cookies[key] != value
++  nil != value
+ end
+-----------------------
+evil:Genki::Controller#cookie_changed?:/Users/diego/Projects/genki/lib/genki/http/controller.rb:93:813fd
+@@ -1,4 +1,4 @@
+ def cookie_changed?(key, value)
+-  request.cookies[key] != value
++  self != value
+ end
+-----------------------
+evil:Genki::Controller#cookie_changed?:/Users/diego/Projects/genki/lib/genki/http/controller.rb:93:e53cd
+@@ -1,4 +1,4 @@
+ def cookie_changed?(key, value)
+-  request.cookies[key] != value
++  request.cookies != value
+ end
+-----------------------
+evil:Genki::Controller#cookie_changed?:/Users/diego/Projects/genki/lib/genki/http/controller.rb:93:edf44
+@@ -1,4 +1,4 @@
+ def cookie_changed?(key, value)
+-  request.cookies[key] != value
++  request.cookies.key?(key) != value
+ end
+-----------------------
+evil:Genki::Controller#cookie_changed?:/Users/diego/Projects/genki/lib/genki/http/controller.rb:93:972c9
+@@ -1,4 +1,4 @@
+ def cookie_changed?(key, value)
+-  request.cookies[key] != value
++  key != value
+ end
+-----------------------
+evil:Genki::Controller#cookie_changed?:/Users/diego/Projects/genki/lib/genki/http/controller.rb:93:63d8a
+@@ -1,4 +1,4 @@
+ def cookie_changed?(key, value)
+-  request.cookies[key] != value
++  request.cookies[nil] != value
+ end
+-----------------------
+evil:Genki::Controller#cookie_changed?:/Users/diego/Projects/genki/lib/genki/http/controller.rb:93:59e76
+@@ -1,4 +1,4 @@
+ def cookie_changed?(key, value)
+-  request.cookies[key] != value
++  value
+ end
+-----------------------
+evil:Genki::Controller#cookie_changed?:/Users/diego/Projects/genki/lib/genki/http/controller.rb:93:3b236
+@@ -1,4 +1,4 @@
+ def cookie_changed?(key, value)
+-  request.cookies[key] != value
++  request.cookies[self] != value
+ end
+-----------------------
+evil:Genki::Controller#cookie_changed?:/Users/diego/Projects/genki/lib/genki/http/controller.rb:93:1624e
+@@ -1,4 +1,4 @@
+ def cookie_changed?(key, value)
+-  request.cookies[key] != value
++  request.cookies[key] != self
+ end
+-----------------------
+evil:Genki::Controller#cookie_changed?:/Users/diego/Projects/genki/lib/genki/http/controller.rb:93:6dcc0
+@@ -1,4 +1,4 @@
+ def cookie_changed?(key, value)
+-  request.cookies[key] != value
++  !request.cookies[key].eql?(value)
+ end
+-----------------------
+evil:Genki::Controller#cookie_changed?:/Users/diego/Projects/genki/lib/genki/http/controller.rb:93:fb27c
+@@ -1,4 +1,4 @@
+ def cookie_changed?(key, value)
+-  request.cookies[key] != value
++  !request.cookies[key].equal?(value)
+ end
+-----------------------
+Genki::Controller#params:/Users/diego/Projects/genki/lib/genki/http/controller.rb:57
+- rspec:30:./spec/genki/http/controller_spec.rb:7/Genki::Controller#get does call Router.route
+- rspec:31:./spec/genki/http/controller_spec.rb:13/Genki::Controller#get does create a correctly Route
+- rspec:32:./spec/genki/http/controller_spec.rb:23/Genki::Controller#post does call Router.route
+- rspec:33:./spec/genki/http/controller_spec.rb:29/Genki::Controller#post does create a correctly Route
+- rspec:34:./spec/genki/http/controller_spec.rb:39/Genki::Controller#put does call Router.route
+- rspec:35:./spec/genki/http/controller_spec.rb:45/Genki::Controller#put does create a correctly Route
+- rspec:36:./spec/genki/http/controller_spec.rb:55/Genki::Controller#delete does call Router.route
+- rspec:37:./spec/genki/http/controller_spec.rb:61/Genki::Controller#delete does create a correctly Route
+- rspec:38:./spec/genki/http/controller_spec.rb:71/Genki::Controller#options does call Router.route
+- rspec:39:./spec/genki/http/controller_spec.rb:77/Genki::Controller#options does create a correctly Route
+- rspec:40:./spec/genki/http/controller_spec.rb:87/Genki::Controller#patch does call Router.route
+- rspec:41:./spec/genki/http/controller_spec.rb:93/Genki::Controller#patch does create a correctly Route
+- rspec:42:./spec/genki/http/controller_spec.rb:107/Genki::Controller.render does return a Response
+- rspec:43:./spec/genki/http/controller_spec.rb:112/Genki::Controller.render response return does render json body
+- rspec:44:./spec/genki/http/controller_spec.rb:118/Genki::Controller.render response return does render html body
+- rspec:45:./spec/genki/http/controller_spec.rb:127/Genki::Controller.render response return does render plain text
+- rspec:46:./spec/genki/http/controller_spec.rb:133/Genki::Controller.render response return does let instance variables available for erb
+- rspec:47:./spec/genki/http/controller_spec.rb:142/Genki::Controller.render response return does has default status
+- rspec:48:./spec/genki/http/controller_spec.rb:146/Genki::Controller.render response return does has default header
+- rspec:49:./spec/genki/http/controller_spec.rb:150/Genki::Controller.render response return does has correctly status
+- rspec:50:./spec/genki/http/controller_spec.rb:154/Genki::Controller.render response return does has correctly header
+- rspec:51:./spec/genki/http/controller_spec.rb:159/Genki::Controller.render response return does add cookies to the response
+- rspec:52:./spec/genki/http/controller_spec.rb:164/Genki::Controller.render response return does not add unchanged from request cookies to the response
+- rspec:53:./spec/genki/http/controller_spec.rb:170/Genki::Controller.render response return does add changed cookies from request to response
+- rspec:54:./spec/genki/http/controller_spec.rb:180/Genki::Controller namespace does set namespace
+- rspec:55:./spec/genki/http/controller_spec.rb:189/Genki::Controller namespace does accept nested namespace
+- rspec:56:./spec/genki/http/controller_spec.rb:202/Genki::Controller.request does call thread current
+- rspec:57:./spec/genki/http/controller_spec.rb:210/Genki::Controller.params does return params
+- rspec:58:./spec/genki/http/controller_spec.rb:223/Genki::Controller.cookies does set instance variable
+- rspec:59:./spec/genki/http/controller_spec.rb:229/Genki::Controller.cookies does retrive request cookies
+- rspec:60:./spec/genki/http/controller_spec.rb:233/Genki::Controller.cookies does store a new cookie
+evil:Genki::Controller#params:/Users/diego/Projects/genki/lib/genki/http/controller.rb:57:74c1b
+@@ -1,4 +1,4 @@
+ def params
+-  Request.current.params
++  Request.params
+ end
+-----------------------
+Genki::Controller#render:/Users/diego/Projects/genki/lib/genki/http/controller.rb:43
+- rspec:30:./spec/genki/http/controller_spec.rb:7/Genki::Controller#get does call Router.route
+- rspec:31:./spec/genki/http/controller_spec.rb:13/Genki::Controller#get does create a correctly Route
+- rspec:32:./spec/genki/http/controller_spec.rb:23/Genki::Controller#post does call Router.route
+- rspec:33:./spec/genki/http/controller_spec.rb:29/Genki::Controller#post does create a correctly Route
+- rspec:34:./spec/genki/http/controller_spec.rb:39/Genki::Controller#put does call Router.route
+- rspec:35:./spec/genki/http/controller_spec.rb:45/Genki::Controller#put does create a correctly Route
+- rspec:36:./spec/genki/http/controller_spec.rb:55/Genki::Controller#delete does call Router.route
+- rspec:37:./spec/genki/http/controller_spec.rb:61/Genki::Controller#delete does create a correctly Route
+- rspec:38:./spec/genki/http/controller_spec.rb:71/Genki::Controller#options does call Router.route
+- rspec:39:./spec/genki/http/controller_spec.rb:77/Genki::Controller#options does create a correctly Route
+- rspec:40:./spec/genki/http/controller_spec.rb:87/Genki::Controller#patch does call Router.route
+- rspec:41:./spec/genki/http/controller_spec.rb:93/Genki::Controller#patch does create a correctly Route
+- rspec:42:./spec/genki/http/controller_spec.rb:107/Genki::Controller.render does return a Response
+- rspec:43:./spec/genki/http/controller_spec.rb:112/Genki::Controller.render response return does render json body
+- rspec:44:./spec/genki/http/controller_spec.rb:118/Genki::Controller.render response return does render html body
+- rspec:45:./spec/genki/http/controller_spec.rb:127/Genki::Controller.render response return does render plain text
+- rspec:46:./spec/genki/http/controller_spec.rb:133/Genki::Controller.render response return does let instance variables available for erb
+- rspec:47:./spec/genki/http/controller_spec.rb:142/Genki::Controller.render response return does has default status
+- rspec:48:./spec/genki/http/controller_spec.rb:146/Genki::Controller.render response return does has default header
+- rspec:49:./spec/genki/http/controller_spec.rb:150/Genki::Controller.render response return does has correctly status
+- rspec:50:./spec/genki/http/controller_spec.rb:154/Genki::Controller.render response return does has correctly header
+- rspec:51:./spec/genki/http/controller_spec.rb:159/Genki::Controller.render response return does add cookies to the response
+- rspec:52:./spec/genki/http/controller_spec.rb:164/Genki::Controller.render response return does not add unchanged from request cookies to the response
+- rspec:53:./spec/genki/http/controller_spec.rb:170/Genki::Controller.render response return does add changed cookies from request to response
+- rspec:54:./spec/genki/http/controller_spec.rb:180/Genki::Controller namespace does set namespace
+- rspec:55:./spec/genki/http/controller_spec.rb:189/Genki::Controller namespace does accept nested namespace
+- rspec:56:./spec/genki/http/controller_spec.rb:202/Genki::Controller.request does call thread current
+- rspec:57:./spec/genki/http/controller_spec.rb:210/Genki::Controller.params does return params
+- rspec:58:./spec/genki/http/controller_spec.rb:223/Genki::Controller.cookies does set instance variable
+- rspec:59:./spec/genki/http/controller_spec.rb:229/Genki::Controller.cookies does retrive request cookies
+- rspec:60:./spec/genki/http/controller_spec.rb:233/Genki::Controller.cookies does store a new cookie
+evil:Genki::Controller#render:/Users/diego/Projects/genki/lib/genki/http/controller.rb:43:afaea
+@@ -1,11 +1,11 @@
+ def render(json: nil, erb: nil, text: nil, headers: {}, status: 200)
+   body = (((render_json(json, headers) || render_erb(erb, headers)) || render_text(text, headers)) || "")
+   response = Response.new(body, status, headers)
+   cookies.each do |key, value|
+-    if cookie_changed?(key, value)
++    if cookie_changed?(self, value)
+       response.set_cookie(key, value)
+     end
+   end
+   response
+ end
+-----------------------
+evil:Genki::Controller#render:/Users/diego/Projects/genki/lib/genki/http/controller.rb:43:470a9
+@@ -1,11 +1,11 @@
+ def render(json: nil, erb: nil, text: nil, headers: {}, status: 200)
+   body = (((render_json(json, headers) || render_erb(erb, headers)) || render_text(text, headers)) || "")
+   response = Response.new(body, status, headers)
+   cookies.each do |key, value|
+-    if cookie_changed?(key, value)
++    if cookie_changed?(nil, value)
+       response.set_cookie(key, value)
+     end
+   end
+   response
+ end
+-----------------------
+evil:Genki::Controller#render:/Users/diego/Projects/genki/lib/genki/http/controller.rb:43:2b867
+@@ -1,11 +1,11 @@
+ def render(json: nil, erb: nil, text: nil, headers: {}, status: 200)
+   body = (((render_json(json, headers) || render_erb(erb, headers)) || render_text(text, headers)) || "")
+   response = Response.new(body, status, headers)
+   cookies.each do |key, value|
+-    if cookie_changed?(key, value)
++    if cookie_changed?(key, self)
+       response.set_cookie(key, value)
+     end
+   end
+   response
+ end
+-----------------------
+evil:Genki::Controller#render:/Users/diego/Projects/genki/lib/genki/http/controller.rb:43:6a327
+@@ -1,11 +1,11 @@
+ def render(json: nil, erb: nil, text: nil, headers: {}, status: 200)
+   body = (((render_json(json, headers) || render_erb(erb, headers)) || render_text(text, headers)) || "")
+   response = Response.new(body, status, headers)
+   cookies.each do |key, value|
+-    if cookie_changed?(key, value)
++    if true
+       response.set_cookie(key, value)
+     end
+   end
+   response
+ end
+-----------------------
+evil:Genki::Controller#render:/Users/diego/Projects/genki/lib/genki/http/controller.rb:43:924a4
+@@ -1,11 +1,9 @@
+ def render(json: nil, erb: nil, text: nil, headers: {}, status: 200)
+   body = (((render_json(json, headers) || render_erb(erb, headers)) || render_text(text, headers)) || "")
+   response = Response.new(body, status, headers)
+   cookies.each do |key, value|
+-    if cookie_changed?(key, value)
+-      response.set_cookie(key, value)
+-    end
++    response.set_cookie(key, value)
+   end
+   response
+ end
+-----------------------
+Genki::Controller#render_erb:/Users/diego/Projects/genki/lib/genki/http/controller.rb:74
+- rspec:30:./spec/genki/http/controller_spec.rb:7/Genki::Controller#get does call Router.route
+- rspec:31:./spec/genki/http/controller_spec.rb:13/Genki::Controller#get does create a correctly Route
+- rspec:32:./spec/genki/http/controller_spec.rb:23/Genki::Controller#post does call Router.route
+- rspec:33:./spec/genki/http/controller_spec.rb:29/Genki::Controller#post does create a correctly Route
+- rspec:34:./spec/genki/http/controller_spec.rb:39/Genki::Controller#put does call Router.route
+- rspec:35:./spec/genki/http/controller_spec.rb:45/Genki::Controller#put does create a correctly Route
+- rspec:36:./spec/genki/http/controller_spec.rb:55/Genki::Controller#delete does call Router.route
+- rspec:37:./spec/genki/http/controller_spec.rb:61/Genki::Controller#delete does create a correctly Route
+- rspec:38:./spec/genki/http/controller_spec.rb:71/Genki::Controller#options does call Router.route
+- rspec:39:./spec/genki/http/controller_spec.rb:77/Genki::Controller#options does create a correctly Route
+- rspec:40:./spec/genki/http/controller_spec.rb:87/Genki::Controller#patch does call Router.route
+- rspec:41:./spec/genki/http/controller_spec.rb:93/Genki::Controller#patch does create a correctly Route
+- rspec:42:./spec/genki/http/controller_spec.rb:107/Genki::Controller.render does return a Response
+- rspec:43:./spec/genki/http/controller_spec.rb:112/Genki::Controller.render response return does render json body
+- rspec:44:./spec/genki/http/controller_spec.rb:118/Genki::Controller.render response return does render html body
+- rspec:45:./spec/genki/http/controller_spec.rb:127/Genki::Controller.render response return does render plain text
+- rspec:46:./spec/genki/http/controller_spec.rb:133/Genki::Controller.render response return does let instance variables available for erb
+- rspec:47:./spec/genki/http/controller_spec.rb:142/Genki::Controller.render response return does has default status
+- rspec:48:./spec/genki/http/controller_spec.rb:146/Genki::Controller.render response return does has default header
+- rspec:49:./spec/genki/http/controller_spec.rb:150/Genki::Controller.render response return does has correctly status
+- rspec:50:./spec/genki/http/controller_spec.rb:154/Genki::Controller.render response return does has correctly header
+- rspec:51:./spec/genki/http/controller_spec.rb:159/Genki::Controller.render response return does add cookies to the response
+- rspec:52:./spec/genki/http/controller_spec.rb:164/Genki::Controller.render response return does not add unchanged from request cookies to the response
+- rspec:53:./spec/genki/http/controller_spec.rb:170/Genki::Controller.render response return does add changed cookies from request to response
+- rspec:54:./spec/genki/http/controller_spec.rb:180/Genki::Controller namespace does set namespace
+- rspec:55:./spec/genki/http/controller_spec.rb:189/Genki::Controller namespace does accept nested namespace
+- rspec:56:./spec/genki/http/controller_spec.rb:202/Genki::Controller.request does call thread current
+- rspec:57:./spec/genki/http/controller_spec.rb:210/Genki::Controller.params does return params
+- rspec:58:./spec/genki/http/controller_spec.rb:223/Genki::Controller.cookies does set instance variable
+- rspec:59:./spec/genki/http/controller_spec.rb:229/Genki::Controller.cookies does retrive request cookies
+- rspec:60:./spec/genki/http/controller_spec.rb:233/Genki::Controller.cookies does store a new cookie
+evil:Genki::Controller#render_erb:/Users/diego/Projects/genki/lib/genki/http/controller.rb:74:95661
+@@ -1,13 +1,11 @@
+ def render_erb(view, headers)
+   if view.nil?
+     return
+   end
+   require("erubis")
+   file = File.expand_path(view, "./app/views")
+   headers["content-type"] ||= "text/html"
+-  context = instance_variables.map do |var|
+-    [var[1..-1], instance_variable_get(var)]
+-  end.to_h
++  context = self
+   Erubis::Eruby.new(File.read(file)).evaluate(context)
+ end
+-----------------------
+evil:Genki::Controller#render_erb:/Users/diego/Projects/genki/lib/genki/http/controller.rb:74:52f19
+@@ -1,13 +1,13 @@
+ def render_erb(view, headers)
+   if view.nil?
+     return
+   end
+   require("erubis")
+   file = File.expand_path(view, "./app/views")
+   headers["content-type"] ||= "text/html"
+   context = instance_variables.map do |var|
+     [var[1..-1], instance_variable_get(var)]
+   end.to_h
+-  Erubis::Eruby.new(File.read(file)).evaluate(context)
++  Erubis::Eruby.new(File.read(file)).evaluate(self)
+ end
+-----------------------
+Genki::Controller#render_text:/Users/diego/Projects/genki/lib/genki/http/controller.rb:86
+- rspec:30:./spec/genki/http/controller_spec.rb:7/Genki::Controller#get does call Router.route
+- rspec:31:./spec/genki/http/controller_spec.rb:13/Genki::Controller#get does create a correctly Route
+- rspec:32:./spec/genki/http/controller_spec.rb:23/Genki::Controller#post does call Router.route
+- rspec:33:./spec/genki/http/controller_spec.rb:29/Genki::Controller#post does create a correctly Route
+- rspec:34:./spec/genki/http/controller_spec.rb:39/Genki::Controller#put does call Router.route
+- rspec:35:./spec/genki/http/controller_spec.rb:45/Genki::Controller#put does create a correctly Route
+- rspec:36:./spec/genki/http/controller_spec.rb:55/Genki::Controller#delete does call Router.route
+- rspec:37:./spec/genki/http/controller_spec.rb:61/Genki::Controller#delete does create a correctly Route
+- rspec:38:./spec/genki/http/controller_spec.rb:71/Genki::Controller#options does call Router.route
+- rspec:39:./spec/genki/http/controller_spec.rb:77/Genki::Controller#options does create a correctly Route
+- rspec:40:./spec/genki/http/controller_spec.rb:87/Genki::Controller#patch does call Router.route
+- rspec:41:./spec/genki/http/controller_spec.rb:93/Genki::Controller#patch does create a correctly Route
+- rspec:42:./spec/genki/http/controller_spec.rb:107/Genki::Controller.render does return a Response
+- rspec:43:./spec/genki/http/controller_spec.rb:112/Genki::Controller.render response return does render json body
+- rspec:44:./spec/genki/http/controller_spec.rb:118/Genki::Controller.render response return does render html body
+- rspec:45:./spec/genki/http/controller_spec.rb:127/Genki::Controller.render response return does render plain text
+- rspec:46:./spec/genki/http/controller_spec.rb:133/Genki::Controller.render response return does let instance variables available for erb
+- rspec:47:./spec/genki/http/controller_spec.rb:142/Genki::Controller.render response return does has default status
+- rspec:48:./spec/genki/http/controller_spec.rb:146/Genki::Controller.render response return does has default header
+- rspec:49:./spec/genki/http/controller_spec.rb:150/Genki::Controller.render response return does has correctly status
+- rspec:50:./spec/genki/http/controller_spec.rb:154/Genki::Controller.render response return does has correctly header
+- rspec:51:./spec/genki/http/controller_spec.rb:159/Genki::Controller.render response return does add cookies to the response
+- rspec:52:./spec/genki/http/controller_spec.rb:164/Genki::Controller.render response return does not add unchanged from request cookies to the response
+- rspec:53:./spec/genki/http/controller_spec.rb:170/Genki::Controller.render response return does add changed cookies from request to response
+- rspec:54:./spec/genki/http/controller_spec.rb:180/Genki::Controller namespace does set namespace
+- rspec:55:./spec/genki/http/controller_spec.rb:189/Genki::Controller namespace does accept nested namespace
+- rspec:56:./spec/genki/http/controller_spec.rb:202/Genki::Controller.request does call thread current
+- rspec:57:./spec/genki/http/controller_spec.rb:210/Genki::Controller.params does return params
+- rspec:58:./spec/genki/http/controller_spec.rb:223/Genki::Controller.cookies does set instance variable
+- rspec:59:./spec/genki/http/controller_spec.rb:229/Genki::Controller.cookies does retrive request cookies
+- rspec:60:./spec/genki/http/controller_spec.rb:233/Genki::Controller.cookies does store a new cookie
+evil:Genki::Controller#render_text:/Users/diego/Projects/genki/lib/genki/http/controller.rb:86:0fe00
+@@ -1,8 +1,6 @@
+ def render_text(text, headers)
+-  if text.nil?
+-    return
+-  end
++  nil
+   headers["content-type"] ||= "text/plain"
+   text
+ end
+-----------------------
+evil:Genki::Controller#render_text:/Users/diego/Projects/genki/lib/genki/http/controller.rb:86:c1018
+@@ -1,8 +1,6 @@
+ def render_text(text, headers)
+-  if text.nil?
+-    return
+-  end
++  self
+   headers["content-type"] ||= "text/plain"
+   text
+ end
+-----------------------
+evil:Genki::Controller#render_text:/Users/diego/Projects/genki/lib/genki/http/controller.rb:86:1130b
+@@ -1,8 +1,8 @@
+ def render_text(text, headers)
+-  if text.nil?
++  if nil
+     return
+   end
+   headers["content-type"] ||= "text/plain"
+   text
+ end
+-----------------------
+evil:Genki::Controller#render_text:/Users/diego/Projects/genki/lib/genki/http/controller.rb:86:aca36
+@@ -1,8 +1,8 @@
+ def render_text(text, headers)
+-  if text.nil?
++  if self.nil?
+     return
+   end
+   headers["content-type"] ||= "text/plain"
+   text
+ end
+-----------------------
+evil:Genki::Controller#render_text:/Users/diego/Projects/genki/lib/genki/http/controller.rb:86:dffce
+@@ -1,8 +1,8 @@
+ def render_text(text, headers)
+-  if text.nil?
++  if false
+     return
+   end
+   headers["content-type"] ||= "text/plain"
+   text
+ end
+-----------------------
+evil:Genki::Controller#render_text:/Users/diego/Projects/genki/lib/genki/http/controller.rb:86:cf6b5
+@@ -1,8 +1,8 @@
+ def render_text(text, headers)
+   if text.nil?
+-    return
++    nil
+   end
+   headers["content-type"] ||= "text/plain"
+   text
+ end
+-----------------------
+evil:Genki::Controller#render_text:/Users/diego/Projects/genki/lib/genki/http/controller.rb:86:398b9
+@@ -1,8 +1,8 @@
+ def render_text(text, headers)
+   if text.nil?
+-    return
++    self
+   end
+   headers["content-type"] ||= "text/plain"
+   text
+ end
+-----------------------
+evil:Genki::Controller#render_text:/Users/diego/Projects/genki/lib/genki/http/controller.rb:86:8c87d
+@@ -1,8 +1,5 @@
+ def render_text(text, headers)
+-  if text.nil?
+-    return
+-  end
+   headers["content-type"] ||= "text/plain"
+   text
+ end
+-----------------------
+Genki::Generators::App.source_root:/Users/diego/Projects/genki/lib/genki/generators/app.rb:17
+- rspec:10:./spec/genki/generators/app_spec.rb:12/Genki::Generators::App.set_directory sets the destination to a folder with the app name
+- rspec:11:./spec/genki/generators/app_spec.rb:23/Genki::Generators::App.create_directory creates empty directory with app name
+- rspec:12:./spec/genki/generators/app_spec.rb:28/Genki::Generators::App.create_directory does not create directory if already exists
+- rspec:13:./spec/genki/generators/app_spec.rb:32/Genki::Generators::App.create_directory does ignore directory existence if force
+- rspec:14:./spec/genki/generators/app_spec.rb:45/Genki::Generators::App.create_config_ru creates config.ru file
+- rspec:15:./spec/genki/generators/app_spec.rb:50/Genki::Generators::App.create_config_ru has the right content
+- rspec:16:./spec/genki/generators/app_spec.rb:69/Genki::Generators::App.create_gemfile creates Gemfile
+- rspec:17:./spec/genki/generators/app_spec.rb:74/Genki::Generators::App.create_gemfile has the right content
+- rspec:18:./spec/genki/generators/app_spec.rb:93/Genki::Generators::App.create_sample creates app folder
+- rspec:19:./spec/genki/generators/app_spec.rb:98/Genki::Generators::App.create_sample creates app/home.rb
+- rspec:20:./spec/genki/generators/app_spec.rb:103/Genki::Generators::App.create_sample has the right content
+- rspec:21:./spec/genki/generators/app_spec.rb:127/Genki::Generators::App.run_bundle runs bundle
+neutral:Genki::Generators::App.source_root:/Users/diego/Projects/genki/lib/genki/generators/app.rb:17:00d16
+--- Neutral failure ---
+Original code was inserted unmutated. And the test did NOT PASS.
+Your tests do not pass initially or you found a bug in mutant / unparser.
+Subject AST:
+s(:defs,
+  s(:self), :source_root,
+  s(:args),
+  s(:send,
+    s(:const, nil, :File), :expand_path,
+    s(:str, "../app/files"),
+    s(:str, "(string)")))
+Unparsed Source:
+def self.source_root
+  File.expand_path("../app/files", "(string)")
+end
+Test Result:
+- 12 @ runtime: 0.12297
+  - rspec:10:./spec/genki/generators/app_spec.rb:12/Genki::Generators::App.set_directory sets the destination to a folder with the app name
+  - rspec:11:./spec/genki/generators/app_spec.rb:23/Genki::Generators::App.create_directory creates empty directory with app name
+  - rspec:12:./spec/genki/generators/app_spec.rb:28/Genki::Generators::App.create_directory does not create directory if already exists
+  - rspec:13:./spec/genki/generators/app_spec.rb:32/Genki::Generators::App.create_directory does ignore directory existence if force
+  - rspec:14:./spec/genki/generators/app_spec.rb:45/Genki::Generators::App.create_config_ru creates config.ru file
+  - rspec:15:./spec/genki/generators/app_spec.rb:50/Genki::Generators::App.create_config_ru has the right content
+  - rspec:16:./spec/genki/generators/app_spec.rb:69/Genki::Generators::App.create_gemfile creates Gemfile
+  - rspec:17:./spec/genki/generators/app_spec.rb:74/Genki::Generators::App.create_gemfile has the right content
+  - rspec:18:./spec/genki/generators/app_spec.rb:93/Genki::Generators::App.create_sample creates app folder
+  - rspec:19:./spec/genki/generators/app_spec.rb:98/Genki::Generators::App.create_sample creates app/home.rb
+  - rspec:20:./spec/genki/generators/app_spec.rb:103/Genki::Generators::App.create_sample has the right content
+  - rspec:21:./spec/genki/generators/app_spec.rb:127/Genki::Generators::App.run_bundle runs bundle
+Test Output:
+
+Randomized with seed 36592
+
+Genki::Generators::App
+  .set_directory
+    sets the destination to a folder with the app name
+  .create_sample
+    creates app/home.rb (FAILED - 1)
+
+Failures:
+
+  1) Genki::Generators::App.create_sample creates app/home.rb
+     Failure/Error: template 'app/home.rb'
+
+     Thor::Error:
+       Could not find "app/home.rb" in any of your source paths. Your current source paths are:
+       /app/files
+     # /Users/diego/.gem/ruby/2.3.1/gems/thor-0.19.1/lib/thor/actions.rb:155:in `find_in_source_paths'
+     # /Users/diego/.gem/ruby/2.3.1/gems/thor-0.19.1/lib/thor/actions/file_manipulation.rb:112:in `template'
+     # ./lib/genki/generators/app.rb:41:in `create_sample'
+     # ./spec/genki/generators/app_spec.rb:99:in `block (3 levels) in <top (required)>'
+     # /Users/diego/.gem/ruby/2.3.1/gems/mutant-rspec-0.8.8/lib/mutant/integration/rspec.rb:68:in `call'
+     # /Users/diego/.gem/ruby/2.3.1/gems/mutant-0.8.10/lib/mutant/env.rb:48:in `block in run_mutation_tests'
+     # /Users/diego/.gem/ruby/2.3.1/gems/mutant-0.8.10/lib/mutant/isolation.rb:44:in `block (3 levels) in call'
+     # /Users/diego/.gem/ruby/2.3.1/gems/mutant-0.8.10/lib/mutant/isolation.rb:41:in `open'
+     # /Users/diego/.gem/ruby/2.3.1/gems/mutant-0.8.10/lib/mutant/isolation.rb:41:in `block (2 levels) in call'
+     # /Users/diego/.gem/ruby/2.3.1/gems/mutant-0.8.10/lib/mutant/isolation.rb:40:in `fork'
+     # /Users/diego/.gem/ruby/2.3.1/gems/mutant-0.8.10/lib/mutant/isolation.rb:40:in `block in call'
+     # /Users/diego/.gem/ruby/2.3.1/gems/mutant-0.8.10/lib/mutant/isolation.rb:37:in `pipe'
+     # /Users/diego/.gem/ruby/2.3.1/gems/mutant-0.8.10/lib/mutant/isolation.rb:37:in `call'
+     # /Users/diego/.gem/ruby/2.3.1/gems/mutant-0.8.10/lib/mutant/env.rb:46:in `run_mutation_tests'
+     # /Users/diego/.gem/ruby/2.3.1/gems/mutant-0.8.10/lib/mutant/env.rb:25:in `kill'
+     # /Users/diego/.gem/ruby/2.3.1/gems/mutant-0.8.10/lib/mutant/parallel/worker.rb:60:in `call'
+     # /Users/diego/.gem/ruby/2.3.1/gems/mutant-0.8.10/lib/mutant/parallel/worker.rb:60:in `handle_job'
+     # /Users/diego/.gem/ruby/2.3.1/gems/mutant-0.8.10/lib/mutant/parallel/worker.rb:45:in `handle'
+     # /Users/diego/.gem/ruby/2.3.1/gems/mutant-0.8.10/lib/mutant/parallel/worker.rb:31:in `run'
+     # /Users/diego/.gem/ruby/2.3.1/gems/mutant-0.8.10/lib/mutant/parallel/worker.rb:17:in `run'
+     # /Users/diego/.gem/ruby/2.3.1/gems/mutant-0.8.10/lib/mutant/parallel/master.rb:43:in `block (2 levels) in run'
+     # /Users/diego/.gem/ruby/2.3.1/gems/mutant-0.8.10/lib/mutant/actor/env.rb:14:in `block in spawn'
+
+Finished in 0.07876 seconds (files took 1 minute 9.44 seconds to load)
+2 examples, 1 failure
+
+Failed examples:
+
+rspec ./spec/genki/generators/app_spec.rb:98 # Genki::Generators::App.create_sample creates app/home.rb
+
+Randomized with seed 36592
+-----------------------
+Genki::Generators::App#create_directory:/Users/diego/Projects/genki/lib/genki/generators/app.rb:25
+- rspec:10:./spec/genki/generators/app_spec.rb:12/Genki::Generators::App.set_directory sets the destination to a folder with the app name
+- rspec:11:./spec/genki/generators/app_spec.rb:23/Genki::Generators::App.create_directory creates empty directory with app name
+- rspec:12:./spec/genki/generators/app_spec.rb:28/Genki::Generators::App.create_directory does not create directory if already exists
+- rspec:13:./spec/genki/generators/app_spec.rb:32/Genki::Generators::App.create_directory does ignore directory existence if force
+- rspec:14:./spec/genki/generators/app_spec.rb:45/Genki::Generators::App.create_config_ru creates config.ru file
+- rspec:15:./spec/genki/generators/app_spec.rb:50/Genki::Generators::App.create_config_ru has the right content
+- rspec:16:./spec/genki/generators/app_spec.rb:69/Genki::Generators::App.create_gemfile creates Gemfile
+- rspec:17:./spec/genki/generators/app_spec.rb:74/Genki::Generators::App.create_gemfile has the right content
+- rspec:18:./spec/genki/generators/app_spec.rb:93/Genki::Generators::App.create_sample creates app folder
+- rspec:19:./spec/genki/generators/app_spec.rb:98/Genki::Generators::App.create_sample creates app/home.rb
+- rspec:20:./spec/genki/generators/app_spec.rb:103/Genki::Generators::App.create_sample has the right content
+- rspec:21:./spec/genki/generators/app_spec.rb:127/Genki::Generators::App.run_bundle runs bundle
+evil:Genki::Generators::App#create_directory:/Users/diego/Projects/genki/lib/genki/generators/app.rb:25:d93de
+@@ -1,8 +1,8 @@
+ def create_directory
+-  message = set_color("#{"Directory "}#{app_name}#{" already exists"}", :red)
++  message = nil
+   if (Dir.exist?(app_name) && (!options[:force]))
+     raise(Thor::Error, message)
+   end
+   empty_directory("")
+ end
+-----------------------
+evil:Genki::Generators::App#create_directory:/Users/diego/Projects/genki/lib/genki/generators/app.rb:25:6c16b
+@@ -1,8 +1,8 @@
+ def create_directory
+-  message = set_color("#{"Directory "}#{app_name}#{" already exists"}", :red)
++  message = self
+   if (Dir.exist?(app_name) && (!options[:force]))
+     raise(Thor::Error, message)
+   end
+   empty_directory("")
+ end
+-----------------------
+evil:Genki::Generators::App#create_directory:/Users/diego/Projects/genki/lib/genki/generators/app.rb:25:9da3e
+@@ -1,8 +1,8 @@
+ def create_directory
+-  message = set_color("#{"Directory "}#{app_name}#{" already exists"}", :red)
++  message = set_color("#{nil}#{app_name}#{" already exists"}", :red)
+   if (Dir.exist?(app_name) && (!options[:force]))
+     raise(Thor::Error, message)
+   end
+   empty_directory("")
+ end
+-----------------------
+evil:Genki::Generators::App#create_directory:/Users/diego/Projects/genki/lib/genki/generators/app.rb:25:b18e1
+@@ -1,8 +1,8 @@
+ def create_directory
+-  message = set_color("#{"Directory "}#{app_name}#{" already exists"}", :red)
++  message = set_color("#{self}#{app_name}#{" already exists"}", :red)
+   if (Dir.exist?(app_name) && (!options[:force]))
+     raise(Thor::Error, message)
+   end
+   empty_directory("")
+ end
+-----------------------
+evil:Genki::Generators::App#create_directory:/Users/diego/Projects/genki/lib/genki/generators/app.rb:25:c18b9
+@@ -1,8 +1,8 @@
+ def create_directory
+-  message = set_color("#{"Directory "}#{app_name}#{" already exists"}", :red)
++  message = set_color("#{"Directory "}#{nil}#{" already exists"}", :red)
+   if (Dir.exist?(app_name) && (!options[:force]))
+     raise(Thor::Error, message)
+   end
+   empty_directory("")
+ end
+-----------------------
+evil:Genki::Generators::App#create_directory:/Users/diego/Projects/genki/lib/genki/generators/app.rb:25:4cc1d
+@@ -1,8 +1,8 @@
+ def create_directory
+-  message = set_color("#{"Directory "}#{app_name}#{" already exists"}", :red)
++  message = set_color("#{"Directory "}#{self}#{" already exists"}", :red)
+   if (Dir.exist?(app_name) && (!options[:force]))
+     raise(Thor::Error, message)
+   end
+   empty_directory("")
+ end
+-----------------------
+evil:Genki::Generators::App#create_directory:/Users/diego/Projects/genki/lib/genki/generators/app.rb:25:8d9e9
+@@ -1,8 +1,8 @@
+ def create_directory
+-  message = set_color("#{"Directory "}#{app_name}#{" already exists"}", :red)
++  message = set_color("#{"Directory "}#{app_name}#{nil}", :red)
+   if (Dir.exist?(app_name) && (!options[:force]))
+     raise(Thor::Error, message)
+   end
+   empty_directory("")
+ end
+-----------------------
+evil:Genki::Generators::App#create_directory:/Users/diego/Projects/genki/lib/genki/generators/app.rb:25:1c271
+@@ -1,8 +1,8 @@
+ def create_directory
+-  message = set_color("#{"Directory "}#{app_name}#{" already exists"}", :red)
++  message = set_color("#{"Directory "}#{app_name}#{self}", :red)
+   if (Dir.exist?(app_name) && (!options[:force]))
+     raise(Thor::Error, message)
+   end
+   empty_directory("")
+ end
+-----------------------
+evil:Genki::Generators::App#create_directory:/Users/diego/Projects/genki/lib/genki/generators/app.rb:25:4e4ef
+@@ -1,8 +1,8 @@
+ def create_directory
+-  message = set_color("#{"Directory "}#{app_name}#{" already exists"}", :red)
++  message = set_color(nil, :red)
+   if (Dir.exist?(app_name) && (!options[:force]))
+     raise(Thor::Error, message)
+   end
+   empty_directory("")
+ end
+-----------------------
+evil:Genki::Generators::App#create_directory:/Users/diego/Projects/genki/lib/genki/generators/app.rb:25:c3075
+@@ -1,8 +1,8 @@
+ def create_directory
+-  message = set_color("#{"Directory "}#{app_name}#{" already exists"}", :red)
++  message = set_color(self, :red)
+   if (Dir.exist?(app_name) && (!options[:force]))
+     raise(Thor::Error, message)
+   end
+   empty_directory("")
+ end
+-----------------------
+evil:Genki::Generators::App#create_directory:/Users/diego/Projects/genki/lib/genki/generators/app.rb:25:60248
+@@ -1,8 +1,8 @@
+ def create_directory
+-  message = set_color("#{"Directory "}#{app_name}#{" already exists"}", :red)
++  message = set_color(:red)
+   if (Dir.exist?(app_name) && (!options[:force]))
+     raise(Thor::Error, message)
+   end
+   empty_directory("")
+ end
+-----------------------
+evil:Genki::Generators::App#create_directory:/Users/diego/Projects/genki/lib/genki/generators/app.rb:25:b5e03
+@@ -1,8 +1,8 @@
+ def create_directory
+-  message = set_color("#{"Directory "}#{app_name}#{" already exists"}", :red)
++  message = set_color("#{"Directory "}#{app_name}#{" already exists"}", nil)
+   if (Dir.exist?(app_name) && (!options[:force]))
+     raise(Thor::Error, message)
+   end
+   empty_directory("")
+ end
+-----------------------
+evil:Genki::Generators::App#create_directory:/Users/diego/Projects/genki/lib/genki/generators/app.rb:25:0d37e
+@@ -1,8 +1,8 @@
+ def create_directory
+-  message = set_color("#{"Directory "}#{app_name}#{" already exists"}", :red)
++  message = set_color("#{"Directory "}#{app_name}#{" already exists"}", self)
+   if (Dir.exist?(app_name) && (!options[:force]))
+     raise(Thor::Error, message)
+   end
+   empty_directory("")
+ end
+-----------------------
+evil:Genki::Generators::App#create_directory:/Users/diego/Projects/genki/lib/genki/generators/app.rb:25:1694f
+@@ -1,8 +1,8 @@
+ def create_directory
+-  message = set_color("#{"Directory "}#{app_name}#{" already exists"}", :red)
++  message = set_color("#{"Directory "}#{app_name}#{" already exists"}", :red__mutant__)
+   if (Dir.exist?(app_name) && (!options[:force]))
+     raise(Thor::Error, message)
+   end
+   empty_directory("")
+ end
+-----------------------
+evil:Genki::Generators::App#create_directory:/Users/diego/Projects/genki/lib/genki/generators/app.rb:25:71eda
+@@ -1,8 +1,8 @@
+ def create_directory
+-  message = set_color("#{"Directory "}#{app_name}#{" already exists"}", :red)
++  message = set_color("#{"Directory "}#{app_name}#{" already exists"}")
+   if (Dir.exist?(app_name) && (!options[:force]))
+     raise(Thor::Error, message)
+   end
+   empty_directory("")
+ end
+-----------------------
+evil:Genki::Generators::App#create_directory:/Users/diego/Projects/genki/lib/genki/generators/app.rb:25:5eb1e
+@@ -1,8 +1,8 @@
+ def create_directory
+   message = set_color("#{"Directory "}#{app_name}#{" already exists"}", :red)
+-  if (Dir.exist?(app_name) && (!options[:force]))
++  if (Dir.exist?(app_name) && (!options.at(:force)))
+     raise(Thor::Error, message)
+   end
+   empty_directory("")
+ end
+-----------------------
+evil:Genki::Generators::App#create_directory:/Users/diego/Projects/genki/lib/genki/generators/app.rb:25:a849b
+@@ -1,8 +1,8 @@
+ def create_directory
+   message = set_color("#{"Directory "}#{app_name}#{" already exists"}", :red)
+-  if (Dir.exist?(app_name) && (!options[:force]))
++  if (Dir.exist?(app_name) && (!options.key?(:force)))
+     raise(Thor::Error, message)
+   end
+   empty_directory("")
+ end
+-----------------------
+evil:Genki::Generators::App#create_directory:/Users/diego/Projects/genki/lib/genki/generators/app.rb:25:64306
+@@ -1,8 +1,8 @@
+ def create_directory
+   message = set_color("#{"Directory "}#{app_name}#{" already exists"}", :red)
+   if (Dir.exist?(app_name) && (!options[:force]))
+-    raise(Thor::Error, message)
++    raise(Thor::Error, nil)
+   end
+   empty_directory("")
+ end
+-----------------------
+evil:Genki::Generators::App#create_directory:/Users/diego/Projects/genki/lib/genki/generators/app.rb:25:95a9b
+@@ -1,8 +1,8 @@
+ def create_directory
+   message = set_color("#{"Directory "}#{app_name}#{" already exists"}", :red)
+   if (Dir.exist?(app_name) && (!options[:force]))
+-    raise(Thor::Error, message)
++    raise(Thor::Error, self)
+   end
+   empty_directory("")
+ end
+-----------------------
+evil:Genki::Generators::App#create_directory:/Users/diego/Projects/genki/lib/genki/generators/app.rb:25:8e8fd
+@@ -1,8 +1,8 @@
+ def create_directory
+   message = set_color("#{"Directory "}#{app_name}#{" already exists"}", :red)
+   if (Dir.exist?(app_name) && (!options[:force]))
+-    raise(Thor::Error, message)
++    raise(Thor::Error)
+   end
+   empty_directory("")
+ end
+-----------------------
+evil:Genki::Generators::App#create_directory:/Users/diego/Projects/genki/lib/genki/generators/app.rb:25:cf4fc
+@@ -1,8 +1,8 @@
+ def create_directory
+   message = set_color("#{"Directory "}#{app_name}#{" already exists"}", :red)
+   if (Dir.exist?(app_name) && (!options[:force]))
+     raise(Thor::Error, message)
+   end
+-  empty_directory("")
++  empty_directory(self)
+ end
+-----------------------
+Genki::Generators::App#create_sample:/Users/diego/Projects/genki/lib/genki/generators/app.rb:39
+- rspec:10:./spec/genki/generators/app_spec.rb:12/Genki::Generators::App.set_directory sets the destination to a folder with the app name
+- rspec:11:./spec/genki/generators/app_spec.rb:23/Genki::Generators::App.create_directory creates empty directory with app name
+- rspec:12:./spec/genki/generators/app_spec.rb:28/Genki::Generators::App.create_directory does not create directory if already exists
+- rspec:13:./spec/genki/generators/app_spec.rb:32/Genki::Generators::App.create_directory does ignore directory existence if force
+- rspec:14:./spec/genki/generators/app_spec.rb:45/Genki::Generators::App.create_config_ru creates config.ru file
+- rspec:15:./spec/genki/generators/app_spec.rb:50/Genki::Generators::App.create_config_ru has the right content
+- rspec:16:./spec/genki/generators/app_spec.rb:69/Genki::Generators::App.create_gemfile creates Gemfile
+- rspec:17:./spec/genki/generators/app_spec.rb:74/Genki::Generators::App.create_gemfile has the right content
+- rspec:18:./spec/genki/generators/app_spec.rb:93/Genki::Generators::App.create_sample creates app folder
+- rspec:19:./spec/genki/generators/app_spec.rb:98/Genki::Generators::App.create_sample creates app/home.rb
+- rspec:20:./spec/genki/generators/app_spec.rb:103/Genki::Generators::App.create_sample has the right content
+- rspec:21:./spec/genki/generators/app_spec.rb:127/Genki::Generators::App.run_bundle runs bundle
+evil:Genki::Generators::App#create_sample:/Users/diego/Projects/genki/lib/genki/generators/app.rb:39:a69e3
+@@ -1,5 +1,5 @@
+ def create_sample
+-  empty_directory("app")
++  nil
+   template("app/home.rb")
+ end
+-----------------------
+evil:Genki::Generators::App#create_sample:/Users/diego/Projects/genki/lib/genki/generators/app.rb:39:a562f
+@@ -1,5 +1,5 @@
+ def create_sample
+-  empty_directory("app")
++  self
+   template("app/home.rb")
+ end
+-----------------------
+evil:Genki::Generators::App#create_sample:/Users/diego/Projects/genki/lib/genki/generators/app.rb:39:db5b1
+@@ -1,5 +1,5 @@
+ def create_sample
+-  empty_directory("app")
++  "app"
+   template("app/home.rb")
+ end
+-----------------------
+evil:Genki::Generators::App#create_sample:/Users/diego/Projects/genki/lib/genki/generators/app.rb:39:fda5a
+@@ -1,5 +1,5 @@
+ def create_sample
+-  empty_directory("app")
++  empty_directory(self)
+   template("app/home.rb")
+ end
+-----------------------
+evil:Genki::Generators::App#create_sample:/Users/diego/Projects/genki/lib/genki/generators/app.rb:39:66baa
+@@ -1,5 +1,4 @@
+ def create_sample
+-  empty_directory("app")
+   template("app/home.rb")
+ end
+-----------------------
+Genki::Generators::App#run_bundle:/Users/diego/Projects/genki/lib/genki/generators/app.rb:44
+- rspec:10:./spec/genki/generators/app_spec.rb:12/Genki::Generators::App.set_directory sets the destination to a folder with the app name
+- rspec:11:./spec/genki/generators/app_spec.rb:23/Genki::Generators::App.create_directory creates empty directory with app name
+- rspec:12:./spec/genki/generators/app_spec.rb:28/Genki::Generators::App.create_directory does not create directory if already exists
+- rspec:13:./spec/genki/generators/app_spec.rb:32/Genki::Generators::App.create_directory does ignore directory existence if force
+- rspec:14:./spec/genki/generators/app_spec.rb:45/Genki::Generators::App.create_config_ru creates config.ru file
+- rspec:15:./spec/genki/generators/app_spec.rb:50/Genki::Generators::App.create_config_ru has the right content
+- rspec:16:./spec/genki/generators/app_spec.rb:69/Genki::Generators::App.create_gemfile creates Gemfile
+- rspec:17:./spec/genki/generators/app_spec.rb:74/Genki::Generators::App.create_gemfile has the right content
+- rspec:18:./spec/genki/generators/app_spec.rb:93/Genki::Generators::App.create_sample creates app folder
+- rspec:19:./spec/genki/generators/app_spec.rb:98/Genki::Generators::App.create_sample creates app/home.rb
+- rspec:20:./spec/genki/generators/app_spec.rb:103/Genki::Generators::App.create_sample has the right content
+- rspec:21:./spec/genki/generators/app_spec.rb:127/Genki::Generators::App.run_bundle runs bundle
+evil:Genki::Generators::App#run_bundle:/Users/diego/Projects/genki/lib/genki/generators/app.rb:44:841e7
+@@ -1,8 +1,6 @@
+ def run_bundle
+-  inside do
+-    Bundler.with_clean_env do
+-      run("bundle")
+-    end
++  Bundler.with_clean_env do
++    run("bundle")
+   end
+ end
+-----------------------
+evil:Genki::Generators::App#run_bundle:/Users/diego/Projects/genki/lib/genki/generators/app.rb:44:6385e
+@@ -1,8 +1,6 @@
+ def run_bundle
+   inside do
+-    Bundler.with_clean_env do
+-      run("bundle")
+-    end
++    run("bundle")
+   end
+ end
+-----------------------
+Genki::Logger#initialize:/Users/diego/Projects/genki/lib/genki/utils/logger.rb:13
+- rspec:90:./spec/genki/utils/logger_spec.rb:6/Genki::Logger does has info level
+- rspec:91:./spec/genki/utils/logger_spec.rb:11/Genki::Logger.info does call ::Logger#info
+- rspec:92:./spec/genki/utils/logger_spec.rb:19/Genki::Logger.debug does call ::Logger#debug
+- rspec:93:./spec/genki/utils/logger_spec.rb:27/Genki::Logger.warn does call ::Logger#warn
+- rspec:94:./spec/genki/utils/logger_spec.rb:35/Genki::Logger.error does call ::Logger#error
+- rspec:95:./spec/genki/utils/logger_spec.rb:43/Genki::Logger.fatal does call ::Logger#fatal
+- rspec:96:./spec/genki/utils/logger_spec.rb:51/Genki::Logger.unknown does call ::Logger#unknown
+evil:Genki::Logger#initialize:/Users/diego/Projects/genki/lib/genki/utils/logger.rb:13:0c271
+@@ -1,4 +1,4 @@
+ def initialize
+-  super(STDOUT, ::Logger::INFO)
++  super(nil, ::Logger::INFO)
+ end
+-----------------------
+evil:Genki::Logger#initialize:/Users/diego/Projects/genki/lib/genki/utils/logger.rb:13:21e24
+@@ -1,4 +1,4 @@
+ def initialize
+-  super(STDOUT, ::Logger::INFO)
++  super(STDOUT, nil)
+ end
+-----------------------
+evil:Genki::Logger#initialize:/Users/diego/Projects/genki/lib/genki/utils/logger.rb:13:347f4
+@@ -1,4 +1,4 @@
+ def initialize
+-  super(STDOUT, ::Logger::INFO)
++  super(STDOUT, self)
+ end
+-----------------------
+evil:Genki::Logger#initialize:/Users/diego/Projects/genki/lib/genki/utils/logger.rb:13:c936b
+@@ -1,4 +1,4 @@
+ def initialize
+-  super(STDOUT, ::Logger::INFO)
++  super(STDOUT, Logger::INFO)
+ end
+-----------------------
+evil:Genki::Logger#initialize:/Users/diego/Projects/genki/lib/genki/utils/logger.rb:13:698b4
+@@ -1,4 +1,4 @@
+ def initialize
+-  super(STDOUT, ::Logger::INFO)
++  super(STDOUT, INFO)
+ end
+-----------------------
+evil:Genki::Logger#initialize:/Users/diego/Projects/genki/lib/genki/utils/logger.rb:13:0a383
+@@ -1,4 +1,4 @@
+ def initialize
+-  super(STDOUT, ::Logger::INFO)
++  super(STDOUT)
+ end
+-----------------------
+Genki::Request#json_data?:/Users/diego/Projects/genki/lib/genki/http/request.rb:16
+- rspec:61:./spec/genki/http/request_spec.rb:5/Genki::Request.current= does put request on thread
+- rspec:62:./spec/genki/http/request_spec.rb:13/Genki::Request.current does return thread request
+- rspec:63:./spec/genki/http/request_spec.rb:23/Genki::Request.json_data? does return a boolean
+- rspec:64:./spec/genki/http/request_spec.rb:27/Genki::Request.json_data? does return true when content-type == json
+evil:Genki::Request#json_data?:/Users/diego/Projects/genki/lib/genki/http/request.rb:16:adcd7
+@@ -1,4 +1,4 @@
+ def json_data?
+-  media_type == "application/json"
++  self == "application/json"
+ end
+-----------------------
+evil:Genki::Request#json_data?:/Users/diego/Projects/genki/lib/genki/http/request.rb:16:24990
+@@ -1,4 +1,4 @@
+ def json_data?
+-  media_type == "application/json"
++  media_type.eql?("application/json")
+ end
+-----------------------
+evil:Genki::Request#json_data?:/Users/diego/Projects/genki/lib/genki/http/request.rb:16:f7d79
+@@ -1,4 +1,4 @@
+ def json_data?
+-  media_type == "application/json"
++  nil == "application/json"
+ end
+-----------------------
+evil:Genki::Request#json_data?:/Users/diego/Projects/genki/lib/genki/http/request.rb:16:8e94b
+@@ -1,4 +1,4 @@
+ def json_data?
+-  media_type == "application/json"
++  media_type.equal?("application/json")
+ end
+-----------------------
+evil:Genki::Request#json_data?:/Users/diego/Projects/genki/lib/genki/http/request.rb:16:8494f
+@@ -1,4 +1,4 @@
+ def json_data?
+-  media_type == "application/json"
++  media_type == self
+ end
+-----------------------
+Genki::Route#==:/Users/diego/Projects/genki/lib/genki/http/route.rb:34
+- rspec:68:./spec/genki/http/route_spec.rb:10/Genki::Route#initialize does create params
+- rspec:69:./spec/genki/http/route_spec.rb:14/Genki::Route#initialize does create path
+- rspec:70:./spec/genki/http/route_spec.rb:18/Genki::Route#initialize does create action
+- rspec:71:./spec/genki/http/route_spec.rb:25/Genki::Route#match? when current path match does return true
+- rspec:72:./spec/genki/http/route_spec.rb:29/Genki::Route#match? when current path match does assign params to @parsed_path
+- rspec:73:./spec/genki/http/route_spec.rb:37/Genki::Route#match? when current doesnt match does return false
+- rspec:74:./spec/genki/http/route_spec.rb:50/Genki::Route#process does call process_params
+- rspec:75:./spec/genki/http/route_spec.rb:57/Genki::Route#process does call the route block
+- rspec:76:./spec/genki/http/route_spec.rb:70/Genki::Route#process does logger request
+- rspec:77:./spec/genki/http/route_spec.rb:87/Genki::Route#process_params does merge URL params to request
+- rspec:78:./spec/genki/http/route_spec.rb:105/Genki::Route#process_params when receiving JSON data does parse JSON parameters
+- rspec:79:./spec/genki/http/route_spec.rb:109/Genki::Route#process_params when receiving JSON data does merge JSON with URL params
+- rspec:80:./spec/genki/http/route_spec.rb:113/Genki::Route#process_params when receiving JSON data does get correct object types and values
+evil:Genki::Route#==:/Users/diego/Projects/genki/lib/genki/http/route.rb:34:4485a
+@@ -1,4 +1,4 @@
+-def ==(other)
++def ==
+   other.is_a?(Route) && (@path_regex == other.path_regex)
+ end
+-----------------------
+evil:Genki::Route#==:/Users/diego/Projects/genki/lib/genki/http/route.rb:34:1e0a6
+@@ -1,4 +1,4 @@
+-def ==(other)
++def ==(_other)
+   other.is_a?(Route) && (@path_regex == other.path_regex)
+ end
+-----------------------
+evil:Genki::Route#==:/Users/diego/Projects/genki/lib/genki/http/route.rb:34:52d31
+@@ -1,4 +1,4 @@
+ def ==(other)
+-  other.is_a?(Route) && (@path_regex == other.path_regex)
++  raise
+ end
+-----------------------
+evil:Genki::Route#==:/Users/diego/Projects/genki/lib/genki/http/route.rb:34:072bb
+@@ -1,4 +1,4 @@
+ def ==(other)
+-  other.is_a?(Route) && (@path_regex == other.path_regex)
++  nil
+ end
+-----------------------
+evil:Genki::Route#==:/Users/diego/Projects/genki/lib/genki/http/route.rb:34:31bc5
+@@ -1,4 +1,4 @@
+ def ==(other)
+-  other.is_a?(Route) && (@path_regex == other.path_regex)
++  other.is_a?(Route)
+ end
+-----------------------
+evil:Genki::Route#==:/Users/diego/Projects/genki/lib/genki/http/route.rb:34:8458a
+@@ -1,4 +1,3 @@
+ def ==(other)
+-  other.is_a?(Route) && (@path_regex == other.path_regex)
+ end
+-----------------------
+evil:Genki::Route#==:/Users/diego/Projects/genki/lib/genki/http/route.rb:34:68b54
+@@ -1,4 +1,4 @@
+ def ==(other)
+-  other.is_a?(Route) && (@path_regex == other.path_regex)
++  self
+ end
+-----------------------
+evil:Genki::Route#==:/Users/diego/Projects/genki/lib/genki/http/route.rb:34:07fb0
+@@ -1,4 +1,4 @@
+ def ==(other)
+-  other.is_a?(Route) && (@path_regex == other.path_regex)
++  other.is_a?(Route) || (@path_regex == other.path_regex)
+ end
+-----------------------
+evil:Genki::Route#==:/Users/diego/Projects/genki/lib/genki/http/route.rb:34:d2ce8
+@@ -1,4 +1,4 @@
+ def ==(other)
+-  other.is_a?(Route) && (@path_regex == other.path_regex)
++  @path_regex == other.path_regex
+ end
+-----------------------
+evil:Genki::Route#==:/Users/diego/Projects/genki/lib/genki/http/route.rb:34:52d35
+@@ -1,4 +1,4 @@
+ def ==(other)
+-  other.is_a?(Route) && (@path_regex == other.path_regex)
++  (!other.is_a?(Route)) && (@path_regex == other.path_regex)
+ end
+-----------------------
+evil:Genki::Route#==:/Users/diego/Projects/genki/lib/genki/http/route.rb:34:23850
+@@ -1,4 +1,4 @@
+ def ==(other)
+-  other.is_a?(Route) && (@path_regex == other.path_regex)
++  nil && (@path_regex == other.path_regex)
+ end
+-----------------------
+evil:Genki::Route#==:/Users/diego/Projects/genki/lib/genki/http/route.rb:34:71862
+@@ -1,4 +1,4 @@
+ def ==(other)
+-  other.is_a?(Route) && (@path_regex == other.path_regex)
++  other && (@path_regex == other.path_regex)
+ end
+-----------------------
+evil:Genki::Route#==:/Users/diego/Projects/genki/lib/genki/http/route.rb:34:385fe
+@@ -1,4 +1,4 @@
+ def ==(other)
+-  other.is_a?(Route) && (@path_regex == other.path_regex)
++  self && (@path_regex == other.path_regex)
+ end
+-----------------------
+evil:Genki::Route#==:/Users/diego/Projects/genki/lib/genki/http/route.rb:34:be713
+@@ -1,4 +1,4 @@
+ def ==(other)
+-  other.is_a?(Route) && (@path_regex == other.path_regex)
++  other.instance_of?(Route) && (@path_regex == other.path_regex)
+ end
+-----------------------
+evil:Genki::Route#==:/Users/diego/Projects/genki/lib/genki/http/route.rb:34:b2cce
+@@ -1,4 +1,4 @@
+ def ==(other)
+-  other.is_a?(Route) && (@path_regex == other.path_regex)
++  Route && (@path_regex == other.path_regex)
+ end
+-----------------------
+evil:Genki::Route#==:/Users/diego/Projects/genki/lib/genki/http/route.rb:34:30e15
+@@ -1,4 +1,4 @@
+ def ==(other)
+-  other.is_a?(Route) && (@path_regex == other.path_regex)
++  other.is_a?(nil) && (@path_regex == other.path_regex)
+ end
+-----------------------
+evil:Genki::Route#==:/Users/diego/Projects/genki/lib/genki/http/route.rb:34:db47e
+@@ -1,4 +1,4 @@
+ def ==(other)
+-  other.is_a?(Route) && (@path_regex == other.path_regex)
++  self.is_a?(Route) && (@path_regex == other.path_regex)
+ end
+-----------------------
+evil:Genki::Route#==:/Users/diego/Projects/genki/lib/genki/http/route.rb:34:51df0
+@@ -1,4 +1,4 @@
+ def ==(other)
+-  other.is_a?(Route) && (@path_regex == other.path_regex)
++  other.is_a?(self) && (@path_regex == other.path_regex)
+ end
+-----------------------
+evil:Genki::Route#==:/Users/diego/Projects/genki/lib/genki/http/route.rb:34:71fb0
+@@ -1,4 +1,4 @@
+ def ==(other)
+-  other.is_a?(Route) && (@path_regex == other.path_regex)
++  other.is_a? && (@path_regex == other.path_regex)
+ end
+-----------------------
+evil:Genki::Route#==:/Users/diego/Projects/genki/lib/genki/http/route.rb:34:93e84
+@@ -1,4 +1,4 @@
+ def ==(other)
+-  other.is_a?(Route) && (@path_regex == other.path_regex)
++  other.is_a?(Route) && nil
+ end
+-----------------------
+evil:Genki::Route#==:/Users/diego/Projects/genki/lib/genki/http/route.rb:34:6b417
+@@ -1,4 +1,4 @@
+ def ==(other)
+-  other.is_a?(Route) && (@path_regex == other.path_regex)
++  other.is_a?(Route) && self
+ end
+-----------------------
+evil:Genki::Route#==:/Users/diego/Projects/genki/lib/genki/http/route.rb:34:0ea8d
+@@ -1,4 +1,4 @@
+ def ==(other)
+-  other.is_a?(Route) && (@path_regex == other.path_regex)
++  other.is_a?(Route) && @path_regex
+ end
+-----------------------
+evil:Genki::Route#==:/Users/diego/Projects/genki/lib/genki/http/route.rb:34:d6723
+@@ -1,4 +1,4 @@
+ def ==(other)
+-  other.is_a?(Route) && (@path_regex == other.path_regex)
++  other.is_a?(Route) && (path_regex == other.path_regex)
+ end
+-----------------------
+evil:Genki::Route#==:/Users/diego/Projects/genki/lib/genki/http/route.rb:34:dea1b
+@@ -1,4 +1,4 @@
+ def ==(other)
+-  other.is_a?(Route) && (@path_regex == other.path_regex)
++  other.is_a?(Route) && @path_regex.eql?(other.path_regex)
+ end
+-----------------------
+evil:Genki::Route#==:/Users/diego/Projects/genki/lib/genki/http/route.rb:34:a042a
+@@ -1,4 +1,4 @@
+ def ==(other)
+-  other.is_a?(Route) && (@path_regex == other.path_regex)
++  other.is_a?(Route) && @path_regex.equal?(other.path_regex)
+ end
+-----------------------
+evil:Genki::Route#==:/Users/diego/Projects/genki/lib/genki/http/route.rb:34:7dd3a
+@@ -1,4 +1,4 @@
+ def ==(other)
+-  other.is_a?(Route) && (@path_regex == other.path_regex)
++  other.is_a?(Route) && (self == other.path_regex)
+ end
+-----------------------
+evil:Genki::Route#==:/Users/diego/Projects/genki/lib/genki/http/route.rb:34:9ed97
+@@ -1,4 +1,4 @@
+ def ==(other)
+-  other.is_a?(Route) && (@path_regex == other.path_regex)
++  other.is_a?(Route) && (nil == other.path_regex)
+ end
+-----------------------
+evil:Genki::Route#==:/Users/diego/Projects/genki/lib/genki/http/route.rb:34:2b1cd
+@@ -1,4 +1,4 @@
+ def ==(other)
+-  other.is_a?(Route) && (@path_regex == other.path_regex)
++  other.is_a?(Route) && (@path_regex == self)
+ end
+-----------------------
+evil:Genki::Route#==:/Users/diego/Projects/genki/lib/genki/http/route.rb:34:e2c65
+@@ -1,4 +1,4 @@
+ def ==(other)
+-  other.is_a?(Route) && (@path_regex == other.path_regex)
++  other.is_a?(Route) && (@path_regex == nil)
+ end
+-----------------------
+evil:Genki::Route#==:/Users/diego/Projects/genki/lib/genki/http/route.rb:34:8cd97
+@@ -1,4 +1,4 @@
+ def ==(other)
+-  other.is_a?(Route) && (@path_regex == other.path_regex)
++  other.is_a?(Route) && other.path_regex
+ end
+-----------------------
+evil:Genki::Route#==:/Users/diego/Projects/genki/lib/genki/http/route.rb:34:d9c80
+@@ -1,4 +1,4 @@
+ def ==(other)
+-  other.is_a?(Route) && (@path_regex == other.path_regex)
++  other.is_a?(Route) && (@path_regex == other)
+ end
+-----------------------
+evil:Genki::Route#==:/Users/diego/Projects/genki/lib/genki/http/route.rb:34:fe336
+@@ -1,4 +1,4 @@
+ def ==(other)
+-  other.is_a?(Route) && (@path_regex == other.path_regex)
++  other.is_a?(Route) && (@path_regex == self.path_regex)
+ end
+-----------------------
+Genki::Route#initialize:/Users/diego/Projects/genki/lib/genki/http/route.rb:12
+- rspec:68:./spec/genki/http/route_spec.rb:10/Genki::Route#initialize does create params
+- rspec:69:./spec/genki/http/route_spec.rb:14/Genki::Route#initialize does create path
+- rspec:70:./spec/genki/http/route_spec.rb:18/Genki::Route#initialize does create action
+evil:Genki::Route#initialize:/Users/diego/Projects/genki/lib/genki/http/route.rb:12:383db
+@@ -1,7 +1,7 @@
+ def initialize(path, &block)
+-  @path = path
++  nil
+   @params = path.scan(/:[a-z_]+/)
+   @path_regex = "^".concat(path.gsub(/:[a-z_]+/, "([a-z0-9]+)")).concat("/?$")
+   @action = block
+ end
+-----------------------
+evil:Genki::Route#initialize:/Users/diego/Projects/genki/lib/genki/http/route.rb:12:328ab
+@@ -1,7 +1,7 @@
+ def initialize(path, &block)
+-  @path = path
++  @path__mutant__ = path
+   @params = path.scan(/:[a-z_]+/)
+   @path_regex = "^".concat(path.gsub(/:[a-z_]+/, "([a-z0-9]+)")).concat("/?$")
+   @action = block
+ end
+-----------------------
+evil:Genki::Route#initialize:/Users/diego/Projects/genki/lib/genki/http/route.rb:12:c8c6d
+@@ -1,7 +1,7 @@
+ def initialize(path, &block)
+-  @path = path
++  self
+   @params = path.scan(/:[a-z_]+/)
+   @path_regex = "^".concat(path.gsub(/:[a-z_]+/, "([a-z0-9]+)")).concat("/?$")
+   @action = block
+ end
+-----------------------
+evil:Genki::Route#initialize:/Users/diego/Projects/genki/lib/genki/http/route.rb:12:41e6a
+@@ -1,7 +1,7 @@
+ def initialize(path, &block)
+-  @path = path
++  @path = self
+   @params = path.scan(/:[a-z_]+/)
+   @path_regex = "^".concat(path.gsub(/:[a-z_]+/, "([a-z0-9]+)")).concat("/?$")
+   @action = block
+ end
+-----------------------
+evil:Genki::Route#initialize:/Users/diego/Projects/genki/lib/genki/http/route.rb:12:1c995
+@@ -1,7 +1,7 @@
+ def initialize(path, &block)
+-  @path = path
++  @path = nil
+   @params = path.scan(/:[a-z_]+/)
+   @path_regex = "^".concat(path.gsub(/:[a-z_]+/, "([a-z0-9]+)")).concat("/?$")
+   @action = block
+ end
+-----------------------
+evil:Genki::Route#initialize:/Users/diego/Projects/genki/lib/genki/http/route.rb:12:64845
+@@ -1,7 +1,6 @@
+ def initialize(path, &block)
+-  @path = path
+   @params = path.scan(/:[a-z_]+/)
+   @path_regex = "^".concat(path.gsub(/:[a-z_]+/, "([a-z0-9]+)")).concat("/?$")
+   @action = block
+ end
+-----------------------
+Genki::Route#match?:/Users/diego/Projects/genki/lib/genki/http/route.rb:19
+- rspec:71:./spec/genki/http/route_spec.rb:25/Genki::Route#match? when current path match does return true
+- rspec:72:./spec/genki/http/route_spec.rb:29/Genki::Route#match? when current path match does assign params to @parsed_path
+- rspec:73:./spec/genki/http/route_spec.rb:37/Genki::Route#match? when current doesnt match does return false
+evil:Genki::Route#match?:/Users/diego/Projects/genki/lib/genki/http/route.rb:19:d4442
+@@ -1,4 +1,4 @@
+ def match?(current_path)
+-  @parsed_path = current_path.match(@path_regex).to_a[1..-1]
++  @parsed_path = current_path.match(path_regex).to_a[1..-1]
+ end
+-----------------------
+Genki::Route#process:/Users/diego/Projects/genki/lib/genki/http/route.rb:23
+- rspec:74:./spec/genki/http/route_spec.rb:50/Genki::Route#process does call process_params
+- rspec:75:./spec/genki/http/route_spec.rb:57/Genki::Route#process does call the route block
+- rspec:76:./spec/genki/http/route_spec.rb:70/Genki::Route#process does logger request
+evil:Genki::Route#process:/Users/diego/Projects/genki/lib/genki/http/route.rb:23:7729c
+@@ -1,8 +1,8 @@
+ def process
+   process_params
+   klass = @action.binding.receiver
+-  controller = klass.new
++  controller = nil
+   Logger.info("#{"Request processed by "}#{klass}")
+   controller.instance_eval(&@action)
+ end
+-----------------------
+evil:Genki::Route#process:/Users/diego/Projects/genki/lib/genki/http/route.rb:23:d497f
+@@ -1,8 +1,8 @@
+ def process
+   process_params
+   klass = @action.binding.receiver
+-  controller = klass.new
++  controller = klass
+   Logger.info("#{"Request processed by "}#{klass}")
+   controller.instance_eval(&@action)
+ end
+-----------------------
+evil:Genki::Route#process:/Users/diego/Projects/genki/lib/genki/http/route.rb:23:c769f
+@@ -1,8 +1,8 @@
+ def process
+   process_params
+   klass = @action.binding.receiver
+-  controller = klass.new
++  controller = self
+   Logger.info("#{"Request processed by "}#{klass}")
+   controller.instance_eval(&@action)
+ end
+-----------------------
+evil:Genki::Route#process:/Users/diego/Projects/genki/lib/genki/http/route.rb:23:5771b
+@@ -1,8 +1,8 @@
+ def process
+   process_params
+   klass = @action.binding.receiver
+   controller = klass.new
+-  Logger.info("#{"Request processed by "}#{klass}")
++  Logger.info("#{nil}#{klass}")
+   controller.instance_eval(&@action)
+ end
+-----------------------
+evil:Genki::Route#process:/Users/diego/Projects/genki/lib/genki/http/route.rb:23:b1283
+@@ -1,8 +1,8 @@
+ def process
+   process_params
+   klass = @action.binding.receiver
+   controller = klass.new
+-  Logger.info("#{"Request processed by "}#{klass}")
++  Logger.info("#{self}#{klass}")
+   controller.instance_eval(&@action)
+ end
+-----------------------
+evil:Genki::Route#process:/Users/diego/Projects/genki/lib/genki/http/route.rb:23:4f4c2
+@@ -1,8 +1,8 @@
+ def process
+   process_params
+   klass = @action.binding.receiver
+   controller = klass.new
+-  Logger.info("#{"Request processed by "}#{klass}")
++  Logger.info("#{"Request processed by "}#{nil}")
+   controller.instance_eval(&@action)
+ end
+-----------------------
+evil:Genki::Route#process:/Users/diego/Projects/genki/lib/genki/http/route.rb:23:27b9f
+@@ -1,8 +1,8 @@
+ def process
+   process_params
+   klass = @action.binding.receiver
+   controller = klass.new
+-  Logger.info("#{"Request processed by "}#{klass}")
++  Logger.info("#{"Request processed by "}#{self}")
+   controller.instance_eval(&@action)
+ end
+-----------------------
+evil:Genki::Route#process:/Users/diego/Projects/genki/lib/genki/http/route.rb:23:37950
+@@ -1,8 +1,8 @@
+ def process
+   process_params
+   klass = @action.binding.receiver
+   controller = klass.new
+-  Logger.info("#{"Request processed by "}#{klass}")
++  Logger.info(self)
+   controller.instance_eval(&@action)
+ end
+-----------------------
+evil:Genki::Route#process:/Users/diego/Projects/genki/lib/genki/http/route.rb:23:86c31
+@@ -1,8 +1,8 @@
+ def process
+   process_params
+   klass = @action.binding.receiver
+   controller = klass.new
+-  Logger.info("#{"Request processed by "}#{klass}")
++  Logger.info(nil)
+   controller.instance_eval(&@action)
+ end
+-----------------------
+evil:Genki::Route#process:/Users/diego/Projects/genki/lib/genki/http/route.rb:23:cd117
+@@ -1,8 +1,8 @@
+ def process
+   process_params
+   klass = @action.binding.receiver
+   controller = klass.new
+   Logger.info("#{"Request processed by "}#{klass}")
+-  controller.instance_eval(&@action)
++  self.instance_eval(&@action)
+ end
+-----------------------
+Genki::Route#process_params:/Users/diego/Projects/genki/lib/genki/http/route.rb:44
+- rspec:77:./spec/genki/http/route_spec.rb:87/Genki::Route#process_params does merge URL params to request
+- rspec:78:./spec/genki/http/route_spec.rb:105/Genki::Route#process_params when receiving JSON data does parse JSON parameters
+- rspec:79:./spec/genki/http/route_spec.rb:109/Genki::Route#process_params when receiving JSON data does merge JSON with URL params
+- rspec:80:./spec/genki/http/route_spec.rb:113/Genki::Route#process_params when receiving JSON data does get correct object types and values
+evil:Genki::Route#process_params:/Users/diego/Projects/genki/lib/genki/http/route.rb:44:c257f
+@@ -1,12 +1,12 @@
+ def process_params
+   params = {}
+   @params.each_with_index do |param, index|
+-    params[param[1..-1]] = @parsed_path[index]
++    params[param[1..-1]] = @parsed_path.at(index)
+   end
+   if Request.current.json_data?
+     raw_data = Request.current.env["rack.input"].read
+     params.merge!(JSON.parse(raw_data))
+   end
+   Request.current.params.merge!(params)
+ end
+-----------------------
+evil:Genki::Route#process_params:/Users/diego/Projects/genki/lib/genki/http/route.rb:44:f74db
+@@ -1,12 +1,12 @@
+ def process_params
+   params = {}
+   @params.each_with_index do |param, index|
+-    params[param[1..-1]] = @parsed_path[index]
++    params[param[1..-1]] = @parsed_path.fetch(index)
+   end
+   if Request.current.json_data?
+     raw_data = Request.current.env["rack.input"].read
+     params.merge!(JSON.parse(raw_data))
+   end
+   Request.current.params.merge!(params)
+ end
+-----------------------
+evil:Genki::Route#process_params:/Users/diego/Projects/genki/lib/genki/http/route.rb:44:aa8d4
+@@ -1,12 +1,12 @@
+ def process_params
+   params = {}
+   @params.each_with_index do |param, index|
+     params[param[1..-1]] = @parsed_path[index]
+   end
+   if Request.current.json_data?
+-    raw_data = Request.current.env["rack.input"].read
++    raw_data = Request.current.env.fetch("rack.input").read
+     params.merge!(JSON.parse(raw_data))
+   end
+   Request.current.params.merge!(params)
+ end
+-----------------------
+Genki::Router#process:/Users/diego/Projects/genki/lib/genki/http/router.rb:22
+- rspec:84:./spec/genki/http/router_spec.rb:31/Genki::Router#process does call process on the route
+- rspec:85:./spec/genki/http/router_spec.rb:44/Genki::Router#process when invalid request does raise RouteNotFoundError when route not found
+evil:Genki::Router#process:/Users/diego/Projects/genki/lib/genki/http/router.rb:22:2d1b8
+@@ -1,20 +1,20 @@
+ def process
+   current_route = nil
+-  if @routes[Request.current.request_method]
++  if @routes.key?(Request.current.request_method)
+     @routes[Request.current.request_method].each do |route|
+       current_route = if route.match?(Request.current.path)
+         route
+       else
+         nil
+       end
+       if current_route
+         break
+       end
+     end
+   end
+   unless current_route
+     raise(RouteNotFoundError)
+   end
+   current_route.process
+ end
+-----------------------
+evil:Genki::Router#process:/Users/diego/Projects/genki/lib/genki/http/router.rb:22:35143
+@@ -1,20 +1,20 @@
+ def process
+   current_route = nil
+   if @routes[Request.current.request_method]
+-    @routes[Request.current.request_method].each do |route|
++    @routes.fetch(Request.current.request_method).each do |route|
+       current_route = if route.match?(Request.current.path)
+         route
+       else
+         nil
+       end
+       if current_route
+         break
+       end
+     end
+   end
+   unless current_route
+     raise(RouteNotFoundError)
+   end
+   current_route.process
+ end
+-----------------------
+evil:Genki::Router#process:/Users/diego/Projects/genki/lib/genki/http/router.rb:22:4c39c
+@@ -1,20 +1,20 @@
+ def process
+   current_route = nil
+   if @routes[Request.current.request_method]
+     @routes[Request.current.request_method].each do |route|
+-      current_route = if route.match?(Request.current.path)
++      current_route = if route
+         route
+       else
+         nil
+       end
+       if current_route
+         break
+       end
+     end
+   end
+   unless current_route
+     raise(RouteNotFoundError)
+   end
+   current_route.process
+ end
+-----------------------
+evil:Genki::Router#process:/Users/diego/Projects/genki/lib/genki/http/router.rb:22:cd6ad
+@@ -1,20 +1,20 @@
+ def process
+   current_route = nil
+   if @routes[Request.current.request_method]
+     @routes[Request.current.request_method].each do |route|
+-      current_route = if route.match?(Request.current.path)
++      current_route = if Request.current.path
+         route
+       else
+         nil
+       end
+       if current_route
+         break
+       end
+     end
+   end
+   unless current_route
+     raise(RouteNotFoundError)
+   end
+   current_route.process
+ end
+-----------------------
+evil:Genki::Router#process:/Users/diego/Projects/genki/lib/genki/http/router.rb:22:19b20
+@@ -1,20 +1,20 @@
+ def process
+   current_route = nil
+   if @routes[Request.current.request_method]
+     @routes[Request.current.request_method].each do |route|
+-      current_route = if route.match?(Request.current.path)
++      current_route = if true
+         route
+       else
+         nil
+       end
+       if current_route
+         break
+       end
+     end
+   end
+   unless current_route
+     raise(RouteNotFoundError)
+   end
+   current_route.process
+ end
+-----------------------
+evil:Genki::Router#process:/Users/diego/Projects/genki/lib/genki/http/router.rb:22:0a046
+@@ -1,20 +1,16 @@
+ def process
+   current_route = nil
+   if @routes[Request.current.request_method]
+     @routes[Request.current.request_method].each do |route|
+-      current_route = if route.match?(Request.current.path)
+-        route
+-      else
+-        nil
+-      end
++      current_route = route
+       if current_route
+         break
+       end
+     end
+   end
+   unless current_route
+     raise(RouteNotFoundError)
+   end
+   current_route.process
+ end
+-----------------------
+evil:Genki::Router#process:/Users/diego/Projects/genki/lib/genki/http/router.rb:22:1864f
+@@ -1,20 +1,18 @@
+ def process
+   current_route = nil
+   if @routes[Request.current.request_method]
+     @routes[Request.current.request_method].each do |route|
+       current_route = if route.match?(Request.current.path)
+         route
+-      else
+-        nil
+       end
+       if current_route
+         break
+       end
+     end
+   end
+   unless current_route
+     raise(RouteNotFoundError)
+   end
+   current_route.process
+ end
+-----------------------
+evil:Genki::Router#process:/Users/diego/Projects/genki/lib/genki/http/router.rb:22:acdf4
+@@ -1,20 +1,18 @@
+ def process
+   current_route = nil
+   if @routes[Request.current.request_method]
+     @routes[Request.current.request_method].each do |route|
+       current_route = if route.match?(Request.current.path)
+         route
+       else
+         nil
+       end
+-      if current_route
+-        break
+-      end
++      nil
+     end
+   end
+   unless current_route
+     raise(RouteNotFoundError)
+   end
+   current_route.process
+ end
+-----------------------
+evil:Genki::Router#process:/Users/diego/Projects/genki/lib/genki/http/router.rb:22:bdd70
+@@ -1,20 +1,18 @@
+ def process
+   current_route = nil
+   if @routes[Request.current.request_method]
+     @routes[Request.current.request_method].each do |route|
+       current_route = if route.match?(Request.current.path)
+         route
+       else
+         nil
+       end
+-      if current_route
+-        break
+-      end
++      self
+     end
+   end
+   unless current_route
+     raise(RouteNotFoundError)
+   end
+   current_route.process
+ end
+-----------------------
+evil:Genki::Router#process:/Users/diego/Projects/genki/lib/genki/http/router.rb:22:431ee
+@@ -1,20 +1,20 @@
+ def process
+   current_route = nil
+   if @routes[Request.current.request_method]
+     @routes[Request.current.request_method].each do |route|
+       current_route = if route.match?(Request.current.path)
+         route
+       else
+         nil
+       end
+-      if current_route
++      if nil
+         break
+       end
+     end
+   end
+   unless current_route
+     raise(RouteNotFoundError)
+   end
+   current_route.process
+ end
+-----------------------
+evil:Genki::Router#process:/Users/diego/Projects/genki/lib/genki/http/router.rb:22:0d0a8
+@@ -1,20 +1,20 @@
+ def process
+   current_route = nil
+   if @routes[Request.current.request_method]
+     @routes[Request.current.request_method].each do |route|
+       current_route = if route.match?(Request.current.path)
+         route
+       else
+         nil
+       end
+-      if current_route
++      if (!current_route)
+         break
+       end
+     end
+   end
+   unless current_route
+     raise(RouteNotFoundError)
+   end
+   current_route.process
+ end
+-----------------------
+evil:Genki::Router#process:/Users/diego/Projects/genki/lib/genki/http/router.rb:22:0020b
+@@ -1,20 +1,20 @@
+ def process
+   current_route = nil
+   if @routes[Request.current.request_method]
+     @routes[Request.current.request_method].each do |route|
+       current_route = if route.match?(Request.current.path)
+         route
+       else
+         nil
+       end
+-      if current_route
++      if true
+         break
+       end
+     end
+   end
+   unless current_route
+     raise(RouteNotFoundError)
+   end
+   current_route.process
+ end
+-----------------------
+evil:Genki::Router#process:/Users/diego/Projects/genki/lib/genki/http/router.rb:22:16b07
+@@ -1,20 +1,20 @@
+ def process
+   current_route = nil
+   if @routes[Request.current.request_method]
+     @routes[Request.current.request_method].each do |route|
+       current_route = if route.match?(Request.current.path)
+         route
+       else
+         nil
+       end
+-      if current_route
++      if false
+         break
+       end
+     end
+   end
+   unless current_route
+     raise(RouteNotFoundError)
+   end
+   current_route.process
+ end
+-----------------------
+evil:Genki::Router#process:/Users/diego/Projects/genki/lib/genki/http/router.rb:22:d42f8
+@@ -1,20 +1,18 @@
+ def process
+   current_route = nil
+   if @routes[Request.current.request_method]
+     @routes[Request.current.request_method].each do |route|
+       current_route = if route.match?(Request.current.path)
+         route
+       else
+         nil
+       end
+-      if current_route
+-        break
+-      end
++      break
+     end
+   end
+   unless current_route
+     raise(RouteNotFoundError)
+   end
+   current_route.process
+ end
+-----------------------
+evil:Genki::Router#process:/Users/diego/Projects/genki/lib/genki/http/router.rb:22:5e66f
+@@ -1,20 +1,20 @@
+ def process
+   current_route = nil
+   if @routes[Request.current.request_method]
+     @routes[Request.current.request_method].each do |route|
+       current_route = if route.match?(Request.current.path)
+         route
+       else
+         nil
+       end
+       if current_route
+-        break
++        nil
+       end
+     end
+   end
+   unless current_route
+     raise(RouteNotFoundError)
+   end
+   current_route.process
+ end
+-----------------------
+evil:Genki::Router#process:/Users/diego/Projects/genki/lib/genki/http/router.rb:22:6bcac
+@@ -1,20 +1,20 @@
+ def process
+   current_route = nil
+   if @routes[Request.current.request_method]
+     @routes[Request.current.request_method].each do |route|
+       current_route = if route.match?(Request.current.path)
+         route
+       else
+         nil
+       end
+       if current_route
+-        break
++        self
+       end
+     end
+   end
+   unless current_route
+     raise(RouteNotFoundError)
+   end
+   current_route.process
+ end
+-----------------------
+evil:Genki::Router#process:/Users/diego/Projects/genki/lib/genki/http/router.rb:22:fd220
+@@ -1,20 +1,17 @@
+ def process
+   current_route = nil
+   if @routes[Request.current.request_method]
+     @routes[Request.current.request_method].each do |route|
+       current_route = if route.match?(Request.current.path)
+         route
+       else
+         nil
+       end
+-      if current_route
+-        break
+-      end
+     end
+   end
+   unless current_route
+     raise(RouteNotFoundError)
+   end
+   current_route.process
+ end
+-----------------------
+Genki::Router#route:/Users/diego/Projects/genki/lib/genki/http/router.rb:16
+- rspec:82:./spec/genki/http/router_spec.rb:14/Genki::Router#route does associate a block to signature
+- rspec:83:./spec/genki/http/router_spec.rb:20/Genki::Router#route raises error when associating same route twice
+evil:Genki::Router#route:/Users/diego/Projects/genki/lib/genki/http/router.rb:16:15419
+@@ -1,8 +1,8 @@
+ def route(method, route)
+   @routes[method] ||= []
+-  if @routes[method].include?(route)
++  if @routes.fetch(method).include?(route)
+     raise(RouteAlreadyDefinedError, "#{method}#{" "}#{route.path}")
+   end
+   @routes[method] << route
+ end
+-----------------------
+evil:Genki::Router#route:/Users/diego/Projects/genki/lib/genki/http/router.rb:16:9e610
+@@ -1,8 +1,8 @@
+ def route(method, route)
+   @routes[method] ||= []
+   if @routes[method].include?(route)
+     raise(RouteAlreadyDefinedError, "#{method}#{" "}#{route.path}")
+   end
+-  @routes[method] << route
++  @routes.fetch(method) << route
+ end
+-----------------------
+Genki::Server#initialize:/Users/diego/Projects/genki/lib/genki/http/server.rb:11
+- rspec:86:./spec/genki/http/server_spec.rb:9/Genki::Server#new accepts an options hash and merge with default options
+- rspec:87:./spec/genki/http/server_spec.rb:15/Genki::Server#new does set Genki.env
+- rspec:88:./spec/genki/http/server_spec.rb:25/Genki::Server.start calls Rack::Server start (super)
+- rspec:89:./spec/genki/http/server_spec.rb:30/Genki::Server.start outputs the starting server phrase
+evil:Genki::Server#initialize:/Users/diego/Projects/genki/lib/genki/http/server.rb:11:12e6d
+@@ -1,6 +1,6 @@
+ def initialize(options = {})
+-  options = default_options.merge(options)
++  nil
+   Genki.env = options[:environment]
+   super
+ end
+-----------------------
+evil:Genki::Server#initialize:/Users/diego/Projects/genki/lib/genki/http/server.rb:11:8b9a1
+@@ -1,6 +1,6 @@
+ def initialize(options = {})
+-  options = default_options.merge(options)
++  self
+   Genki.env = options[:environment]
+   super
+ end
+-----------------------
+evil:Genki::Server#initialize:/Users/diego/Projects/genki/lib/genki/http/server.rb:11:93009
+@@ -1,6 +1,6 @@
+ def initialize(options = {})
+-  options = default_options.merge(options)
++  options__mutant__ = default_options.merge(options)
+   Genki.env = options[:environment]
+   super
+ end
+-----------------------
+evil:Genki::Server#initialize:/Users/diego/Projects/genki/lib/genki/http/server.rb:11:98d52
+@@ -1,6 +1,6 @@
+ def initialize(options = {})
+-  options = default_options.merge(options)
++  options = options
+   Genki.env = options[:environment]
+   super
+ end
+-----------------------
+evil:Genki::Server#initialize:/Users/diego/Projects/genki/lib/genki/http/server.rb:11:86da8
+@@ -1,6 +1,6 @@
+ def initialize(options = {})
+   options = default_options.merge(options)
+-  Genki.env = options[:environment]
++  Genki.env = options.fetch(:environment)
+   super
+ end
+-----------------------
+evil:Genki::Server#initialize:/Users/diego/Projects/genki/lib/genki/http/server.rb:11:15f45
+@@ -1,6 +1,5 @@
+ def initialize(options = {})
+-  options = default_options.merge(options)
+   Genki.env = options[:environment]
+   super
+ end
+-----------------------
+Genki::Server#start:/Users/diego/Projects/genki/lib/genki/http/server.rb:17
+- rspec:86:./spec/genki/http/server_spec.rb:9/Genki::Server#new accepts an options hash and merge with default options
+- rspec:87:./spec/genki/http/server_spec.rb:15/Genki::Server#new does set Genki.env
+- rspec:88:./spec/genki/http/server_spec.rb:25/Genki::Server.start calls Rack::Server start (super)
+- rspec:89:./spec/genki/http/server_spec.rb:30/Genki::Server.start outputs the starting server phrase
+evil:Genki::Server#start:/Users/diego/Projects/genki/lib/genki/http/server.rb:17:7f11c
+@@ -1,6 +1,6 @@
+ def start
+-  uri = "#{"http://"}#{options[:Host]}#{":"}#{options[:Port]}"
++  uri = "#{"http://"}#{options.fetch(:Host)}#{":"}#{options[:Port]}"
+   puts("#{"Genki application starting in "}#{options[:environment]}#{" on "}#{uri}")
+   super
+ end
+-----------------------
+evil:Genki::Server#start:/Users/diego/Projects/genki/lib/genki/http/server.rb:17:e6be9
+@@ -1,6 +1,6 @@
+ def start
+-  uri = "#{"http://"}#{options[:Host]}#{":"}#{options[:Port]}"
++  uri = "#{"http://"}#{options[:Host]}#{":"}#{options.fetch(:Port)}"
+   puts("#{"Genki application starting in "}#{options[:environment]}#{" on "}#{uri}")
+   super
+ end
+-----------------------
+evil:Genki::Server#start:/Users/diego/Projects/genki/lib/genki/http/server.rb:17:dad0a
+@@ -1,6 +1,6 @@
+ def start
+   uri = "#{"http://"}#{options[:Host]}#{":"}#{options[:Port]}"
+-  puts("#{"Genki application starting in "}#{options[:environment]}#{" on "}#{uri}")
++  puts("#{"Genki application starting in "}#{options.fetch(:environment)}#{" on "}#{uri}")
+   super
+ end
+-----------------------
+evil:Genki::Server#start:/Users/diego/Projects/genki/lib/genki/http/server.rb:17:1ac79
+@@ -1,6 +1,6 @@
+ def start
+   uri = "#{"http://"}#{options[:Host]}#{":"}#{options[:Port]}"
+   puts("#{"Genki application starting in "}#{options[:environment]}#{" on "}#{uri}")
+-  super
++  super()
+ end
+-----------------------
+Mutant configuration:
+Matcher:         #<Mutant::Matcher::Config match_expressions: [Genki*]>
+Integration:     Mutant::Integration::Rspec
+Expect Coverage: 100.00%
+Jobs:            4
+Includes:        []
+Requires:        []
+Subjects:        42
+Mutations:       1810
+Results:         1810
+Kills:           1632
+Alive:           178
+Runtime:         150.06s
+Killtime:        258.01s
+Overhead:        -41.84%
+Mutations/s:     12.06
+Coverage:        90.17%
+Expected:        100.00%
